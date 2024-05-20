@@ -1,49 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" type="image/png" href="icon.png" />
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" type="image/png" href="icon.png" />
 
-        <link
-            href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
-            rel="stylesheet"
-        />
+      <link
+         href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
+         rel="stylesheet" />
 
-        <link rel="stylesheet" href="style.css" />
-        <title>Budget App</title>
-    </head>
-    <body>
-        <div class="app">
+      <link rel="stylesheet" href="style.css" />
+      <title>Budget App</title>
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="app">
             <div class="tracker">
-                <!-- SUMMARY -->
-                <div class="summary">
-                    <p class="summary__label">Income</p>
-                    <p class="summary__value summary__value--in">$10 000</p>
-                    <p class="summary__label">Outcome</p>
-                    <p class="summary__value summary__value--out">$1 500</p>
-                </div>
+               <!-- SUMMARY -->
+               <div class="tracker__summary">
+                  <p class="tracker__summary--label">
+                     Income <span class="tracker__summary--value">$10,000</span>
+                  </p>
 
-                <!-- MOVEMENTS-->
-                <div class="movements">
-                    <div class="movements__row">
-                        <div class="movements__type movements__type--income">
-                            2 income
-                        </div>
-                        <div class="movements__date">3 days ago</div>
-                        <div class="movements__value">4 000€</div>
-                    </div>
-                    <div class="movements__row">
-                        <div class="movements__type movements__type--outcome">
-                            1 outcome
-                        </div>
-                        <div class="movements__date">24/01/2037</div>
-                        <div class="movements__value">-378€</div>
-                    </div>
-                </div>
+                  <p class="tracker__summary--label">
+                     Outcome <span class="tracker__summary--value">$1,500</span>
+                  </p>
+               </div>
+
+               <!-- MOVEMENTS-->
+               <div class="movements">
+                  <div class="movements__row">
+                     <div class="movements__type movements__type--income">
+                        2 income
+                     </div>
+                     <div class="movements__date">3 days ago</div>
+                     <div class="movements__value">4 000€</div>
+                  </div>
+                  <div class="movements__row">
+                     <div class="movements__type movements__type--outcome">
+                        1 outcome
+                     </div>
+                     <div class="movements__date">24/01/2037</div>
+                     <div class="movements__value">-378€</div>
+                  </div>
+               </div>
             </div>
-            <div class="planner"></div>
-        </div>
-        <script src="script.js"></script>
-    </body>
+            <div class="planner">
+               <div class="planner__summary">
+                  <span class="planner__summary--change"
+                     >% change of total</span
+                  >
+                  <span class="planner__summary--structure"
+                     >Budget Structure</span
+                  >
+               </div>
+               <div class="planner__categories">
+                  <div class="cat__fixed-costs">Fixed Costs</div>
+                  <div class="cat__transportation">Transportation</div>
+                  <div class="cat__savings">Savings & Investements</div>
+                  <div class="cat__free">Guilt free spending</div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="script.js"></script>
+   </body>
 </html>

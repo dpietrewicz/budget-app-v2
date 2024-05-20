@@ -1,33 +1,74 @@
 :root {
-    --color-gray: #eae7ed;
-    --color-purple: #b793e6;
-    --color-blue: #4b56d2;
-    --color-azure: #4fc1e9;
-    --color-lime: #5be7c4;
+   --color-gray: #eae7ed;
+   --color-purple: #b793e6;
+   --color-blue: #4b56d2;
+   --color-azure: #4fc1e9;
+   --color-lime: #5be7c4;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+   margin: 0;
+   padding: 0;
+   box-sizing: inherit;
 }
 
 html {
-    font-size: 62.5%;
-    box-sizing: border-box;
+   font-size: 62.5%;
+   box-sizing: border-box;
 }
 
 body {
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    color: #444;
-    line-height: 1.9;
-    background-color: var(--color-gray);
+   font-family: 'Poppins', sans-serif;
+   color: #444;
+   background-color: var(--color-gray);
+   height: 100vh;
+   padding: 2rem;
+}
+
+.wrapper {
+   margin: 8rem 0 0 8rem;
+   background-color: white;
+   border-radius: 30px 0 0 30px;
+   padding: 5rem;
 }
 
 .app {
-    margin: 8rem 0 0 8rem;
-    background-color: white;
-    min-height: 50rem;
-    border-radius: 30px 0 0 30px;
+   position: relative;
+   max-width: 150rem;
+   min-height: 50rem;
+
+   display: grid;
+   grid-template-columns: 3fr 5fr;
+   gap: 2rem;
+}
+
+.tracker {
+   border: 3px solid #999;
+   flex: 1;
+   margin-right: 20px;
+   padding: 2rem;
+}
+
+.planner {
+   border: 3px solid #999;
+   flex: 1;
+   padding: 2rem;
+}
+
+.tracker__summary {
+   display: flex;
+   justify-content: space-evenly;
+   margin-bottom: 5rem;
+}
+
+.movements {
+   padding: 5rem;
+}
+
+.movements__row {
+   display: flex;
+}
+
+.movements__value {
+   margin-left: auto;
 }
