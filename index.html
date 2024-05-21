@@ -18,20 +18,21 @@
             <div class="tracker">
                <!-- SUMMARY -->
                <div class="tracker__summary">
-                  <p class="tracker__summary--label">
+                  <p class="tracker__summary--container">
                      Income <span class="tracker__summary--value">$10,000</span>
                   </p>
 
-                  <p class="tracker__summary--label">
+                  <p class="tracker__summary--container">
                      Outcome <span class="tracker__summary--value">$1,500</span>
                   </p>
                </div>
 
                <!-- MOVEMENTS-->
                <div class="movements">
+                  <p class="movements__header">Last Transactions</p>
                   <div class="movements__row">
                      <div class="movements__type movements__type--income">
-                        2 income
+                        1 income
                      </div>
                      <div class="movements__date">3 days ago</div>
                      <div class="movements__value">4 000€</div>
@@ -43,23 +44,31 @@
                      <div class="movements__date">24/01/2037</div>
                      <div class="movements__value">-378€</div>
                   </div>
+                  <div class="movements__row">
+                     <div class="movements__type movements__type--outcome">
+                        2 income
+                     </div>
+                     <div class="movements__date">4/06/2037</div>
+                     <div class="movements__value">-78€</div>
+                  </div>
+                  <div class="movements__row">
+                     <div class="movements__type movements__type--outcome">
+                        2 outcome
+                     </div>
+                     <div class="movements__date">2/01/2037</div>
+                     <div class="movements__value">-555€</div>
+                  </div>
                </div>
             </div>
+
+            <!-- PLANNER  -->
             <div class="planner">
-               <div class="planner__summary">
-                  <span class="planner__summary--change"
-                     >% change of total</span
-                  >
-                  <span class="planner__summary--structure"
-                     >Budget Structure</span
-                  >
-               </div>
-               <div class="planner__categories">
-                  <div class="cat__fixed-costs">Fixed Costs</div>
-                  <div class="cat__transportation">Transportation</div>
-                  <div class="cat__savings">Savings & Investements</div>
-                  <div class="cat__free">Guilt free spending</div>
-               </div>
+               <div class="planner__summary">% change of total</div>
+               <div>Budget Summary</div>
+               <div class="box cat__fixed-costs">Fixed Costs</div>
+               <div class="box cat__transportation">Transportation</div>
+               <div class="box cat__savings">Savings & Investements</div>
+               <div class="box cat__free">Guilt free spending</div>
             </div>
          </div>
       </div>
