@@ -14,76 +14,78 @@
    </head>
    <body>
       <div class="wrapper">
-         <div class="app">
-            <div class="tracker">
-               <!-- SUMMARY -->
-               <div class="tracker__summary">
-                  <p class="tracker__summary--container">
-                     Income <span class="tracker__summary--value">$10,000</span>
-                  </p>
+         <!-- <div class="app"> -->
 
-                  <p class="tracker__summary--container">
-                     Outcome <span class="tracker__summary--value">$1,500</span>
-                  </p>
+         <div class="summary__wrapper">
+            <!-- SUMMARY -->
+            <!-- Incomes -->
+            <div class="summary__inputs">
+               <div class="summary__input">
+                  Income <span class="planner__inputs--value">$10,000</span>
                </div>
-
-               <!-- MOVEMENTS-->
-               <div class="movements">
-                  <p class="movements__header">Last Transactions</p>
-                  <div class="movements__row">
-                     <div class="movements__type movements__type--income">
-                        1 income
-                     </div>
-                     <div class="movements__date">3 days ago</div>
-                     <div class="movements__value">4 000€</div>
-                  </div>
-                  <div class="movements__row">
-                     <div class="movements__type movements__type--outcome">
-                        1 outcome
-                     </div>
-                     <div class="movements__date">24/01/2037</div>
-                     <div class="movements__value">-378€</div>
-                  </div>
-                  <div class="movements__row">
-                     <div class="movements__type movements__type--outcome">
-                        2 income
-                     </div>
-                     <div class="movements__date">4/06/2037</div>
-                     <div class="movements__value">-78€</div>
-                  </div>
-                  <div class="movements__row">
-                     <div class="movements__type movements__type--outcome">
-                        2 outcome
-                     </div>
-                     <div class="movements__date">2/01/2037</div>
-                     <div class="movements__value">-555€</div>
-                  </div>
+               <!-- Outcomes -->
+               <div class="summary__input">
+                  Outcome <span class="planner__inputs--value">$1,500</span>
                </div>
             </div>
 
-            <!-- PLANNER  -->
-            <div class="planner">
-               <div class="planner__summary--change">% change of total</div>
-               <div class="planner__summary--structure">Budget Summary</div>
-               <div class="item item__name">
+            <!-- ELEMENTS  -->
+            <div class="summary__cards">
+               <div class="card card__name">
                   Fixed Costs
-                  <div class="item_value">Fixed Costs22</div>
-                  <div class="item_value__a">$ 3,500</div>
+                  <div class="card_value">Fixed Costs22</div>
+                  <div class="card_value__a">$ 3,500</div>
                </div>
-               <div class="item item__name">
+               <div class="card card__name">
                   Transportation
-                  <span class="item_value">$ 3,500</span>
+                  <span class="card_value">$ 3,500</span>
                </div>
-               <div class="item item__name">
+               <div class="card card__name">
                   Savings & Investements
-                  <span class="item_value">$ 3,500</span>
+                  <span class="card_value">$ 3,500</span>
                </div>
-               <div class="item item__name">
+               <div class="card card__name">
                   Guilt free spending
                   <span class="item_value">$ 3,500</span>
                </div>
             </div>
          </div>
+
+         <!-- MOVEMENTS-->
+         <div class="movements">
+            <div class="movements__wrapper">
+               <p class="movements__header">Last Transactions</p>
+               <div class="movements__row">
+                  <div class="movements__type movements__type--income">
+                     1 income
+                  </div>
+                  <div class="movements__date">3 days ago</div>
+                  <div class="movements__value">4 000€</div>
+               </div>
+               <div class="movements__row">
+                  <div class="movements__type movements__type--outcome">
+                     1 outcome
+                  </div>
+                  <div class="movements__date">24/01/2037</div>
+                  <div class="movements__value">-378€</div>
+               </div>
+               <div class="movements__row">
+                  <div class="movements__type movements__type--outcome">
+                     2 income
+                  </div>
+                  <div class="movements__date">4/06/2037</div>
+                  <div class="movements__value">-78€</div>
+               </div>
+               <div class="movements__row">
+                  <div class="movements__type movements__type--outcome">
+                     2 outcome
+                  </div>
+                  <div class="movements__date">2/01/2037</div>
+                  <div class="movements__value">-555€</div>
+               </div>
+            </div>
+         </div>
+         <!-- </div> -->
       </div>
       <script src="script.js"></script>
    </body>
