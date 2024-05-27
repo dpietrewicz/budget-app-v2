@@ -10,6 +10,9 @@
          rel="stylesheet" />
 
       <link rel="stylesheet" href="style.css" />
+      <script
+         src="https://kit.fontawesome.com/6d11af4070.js"
+         crossorigin="anonymous"></script>
       <title>Budget App</title>
    </head>
    <body>
@@ -30,31 +33,63 @@
             </div>
 
             <!-- ELEMENTS  -->
-            <div class="summary__cards">
-               <div class="card card__name">
-                  Fixed Costs
-                  <div class="card_value">Fixed Costs22</div>
-                  <div class="card_value__a">$ 3,500</div>
-               </div>
-               <div class="card card__name">
-                  Transportation
-                  <span class="card_value">$ 3,500</span>
-               </div>
-               <div class="card card__name">
-                  Savings & Investements
-                  <span class="card_value">$ 3,500</span>
-               </div>
-               <div class="card card__name">
-                  Guilt free spending
-                  <span class="item_value">$ 3,500</span>
+            <div class="summary__cards--wrapper">
+               <h1 class="summary__cards--header">Budgets</h1>
+               <div class="summary__cards">
+                  <div class="card">
+                     <h3 class="card__name">
+                        <span class="fa-solid fa-car card__icon"></span>
+                        Transportation
+                     </h3>
+                     <span class="card__value">$ 3,500</span>
+                  </div>
+                  <div class="card">
+                     <h3 class="card__name">
+                        <span class="fa-solid fa-house card__icon"></span>
+                        Housing
+                     </h3>
+                     <span class="card__value">$ 3,500</span>
+                  </div>
+                  <div class="card">
+                     <h3 class="card__name">
+                        <span
+                           class="fa-solid fa-cart-shopping card__icon"></span>
+                        Groceries
+                     </h3>
+                     <span class="card__value">$ 3,500</span>
+                  </div>
+                  <div class="card">
+                     <h3 class="card__name">
+                        <i
+                           class="fa-solid fa-martini-glass-citrus card__icon"></i>
+                        Entertainment
+                     </h3>
+                     <span class="card__value">$ 3,500</span>
+                  </div>
                </div>
             </div>
          </div>
 
          <!-- MOVEMENTS-->
          <div class="movements">
+            <form class="movements__input--container">
+               <input
+                  type="text"
+                  id="description"
+                  placeholder="Description"
+                  class="form__input" />
+               <input
+                  type="number"
+                  id="amount"
+                  placeholder="Amount"
+                  class="form__input" />
+
+               <button id="add__income" class="form__btn">Add Income</button>
+               <button id="add__expense" class="form__btn">Add Expense</button>
+            </form>
+
             <div class="movements__wrapper">
-               <p class="movements__header">Last Transactions</p>
+               <h1 class="movements__header">Last Transactions</h1>
                <div class="movements__row">
                   <div class="movements__type movements__type--income">
                      1 income
