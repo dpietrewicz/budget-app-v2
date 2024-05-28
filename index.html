@@ -71,26 +71,35 @@
          </div>
 
          <!-- MOVEMENTS-->
-         <div class="movements">
-            <form class="movements__input--container">
-               <input
-                  type="text"
-                  id="description"
-                  placeholder="Description"
-                  class="form__input" />
-               <input
-                  type="number"
-                  id="amount"
-                  placeholder="Amount"
-                  class="form__input" />
+         <div class="movements__wrapper">
+            <div class="inputs__wrapper">
+               <div class="inputs__container">
+                  <input
+                     type="text"
+                     id="description"
+                     placeholder="Description"
+                     class="form__input col-50" />
+                  <input
+                     type="number"
+                     id="amount"
+                     placeholder="Amount"
+                     class="form__input col-50" />
+               </div>
 
-               <button id="add__income" class="form__btn">Add Income</button>
-               <button id="add__expense" class="form__btn">Add Expense</button>
-            </form>
+               <div class="btn__container">
+                  <button id="add__income" class="form__btn col-50">
+                     Add Income
+                  </button>
+                  <button id="add__expense" class="form__btn col-50">
+                     Add Expense
+                  </button>
+               </div>
+            </div>
 
-            <div class="movements__wrapper">
+            <div class="movements__container">
                <h1 class="movements__header">Last Transactions</h1>
                <div class="movements__row">
+                  <label>Taxi to NY</label>
                   <div class="movements__type movements__type--income">
                      1 income
                   </div>
