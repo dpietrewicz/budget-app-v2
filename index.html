@@ -1,136 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" type="image/png" href="icon.png" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" type="image/png" href="icon.png" />
 
-      <link
-         href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
-         rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
+            rel="stylesheet"
+        />
 
-      <link rel="stylesheet" href="style.css" />
-      <script
-         src="https://kit.fontawesome.com/6d11af4070.js"
-         crossorigin="anonymous"></script>
-      <title>Budget App</title>
-   </head>
-   <body>
-      <div class="wrapper">
-         <!-- <div class="app"> -->
+        <link rel="stylesheet" href="style.css" />
+        <script
+            src="https://kit.fontawesome.com/6d11af4070.js"
+            crossorigin="anonymous"
+        ></script>
+        <title>Budget App</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- <div class="app"> -->
 
-         <div class="summary__wrapper">
-            <!-- SUMMARY -->
-            <!-- Incomes -->
-            <div class="summary__inputs">
-               <div class="summary__input">
-                  Income <span class="planner__inputs--value">$10,000</span>
-               </div>
-               <!-- Outcomes -->
-               <div class="summary__input">
-                  Outcome <span class="planner__inputs--value">$1,500</span>
-               </div>
+            <div class="summary__wrapper">
+                <!-- SUMMARY -->
+                <!-- Incomes -->
+                <div class="summary__inputs">
+                    <div class="summary__input">
+                        Income
+                        <span class="planner__inputs--value">$10,000</span>
+                    </div>
+                    <!-- Outcomes -->
+                    <div class="summary__input">
+                        Outcome
+                        <span class="planner__inputs--value">$1,500</span>
+                    </div>
+                </div>
+
+                <!-- ELEMENTS  -->
+                <div class="summary__cards--wrapper">
+                    <h1 class="summary__cards--header">Budgets</h1>
+                    <div class="summary__cards">
+                        <div class="card">
+                            <h3 class="card__name">
+                                <span class="fa-solid fa-car card__icon"></span>
+                                Transportation
+                            </h3>
+                            <span class="card__value">$ 3,500</span>
+                        </div>
+                        <div class="card">
+                            <h3 class="card__name">
+                                <span
+                                    class="fa-solid fa-house card__icon"
+                                ></span>
+                                Housing
+                            </h3>
+                            <span class="card__value">$ 3,500</span>
+                        </div>
+                        <div class="card">
+                            <h3 class="card__name">
+                                <span
+                                    class="fa-solid fa-cart-shopping card__icon"
+                                ></span>
+                                Groceries
+                            </h3>
+                            <span class="card__value">$ 3,500</span>
+                        </div>
+                        <div class="card">
+                            <h3 class="card__name">
+                                <i
+                                    class="fa-solid fa-martini-glass-citrus card__icon"
+                                ></i>
+                                Entertainment
+                            </h3>
+                            <span class="card__value">$ 3,500</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- ELEMENTS  -->
-            <div class="summary__cards--wrapper">
-               <h1 class="summary__cards--header">Budgets</h1>
-               <div class="summary__cards">
-                  <div class="card">
-                     <h3 class="card__name">
-                        <span class="fa-solid fa-car card__icon"></span>
-                        Transportation
-                     </h3>
-                     <span class="card__value">$ 3,500</span>
-                  </div>
-                  <div class="card">
-                     <h3 class="card__name">
+            <!-- MOVEMENTS-->
+            <div class="movements__wrapper">
+                <div class="inputs__wrapper">
+                    <div class="inputs__container">
+                        <input
+                            type="text"
+                            id="description"
+                            placeholder="Description"
+                            class="form__input col-50"
+                        />
+                        <input
+                            type="number"
+                            id="amount"
+                            placeholder="Amount"
+                            class="form__input col-50"
+                        />
+                    </div>
+
+                    <select class="form__input">
+                        <option value="Transportation">Transportation</option>
+                        <option value="Housing">Housing</option>
+                        <option value="Groceries">Groceries</option>
+                        <option value="Entertainment">Entertainment</option>
+                    </select>
+
+                    <div class="btn__container">
+                        <button id="add__income" class="form__btn col-50">
+                            Add Income
+                        </button>
+                        <button id="add__expense" class="form__btn col-50">
+                            Add Expense
+                        </button>
+                    </div>
+                </div>
+
+                <div class="movements__container">
+                    <h1 class="movements__header">Last Transactions</h1>
+                    <div class="movements__row">
                         <span class="fa-solid fa-house card__icon"></span>
-                        Housing
-                     </h3>
-                     <span class="card__value">$ 3,500</span>
-                  </div>
-                  <div class="card">
-                     <h3 class="card__name">
-                        <span
-                           class="fa-solid fa-cart-shopping card__icon"></span>
-                        Groceries
-                     </h3>
-                     <span class="card__value">$ 3,500</span>
-                  </div>
-                  <div class="card">
-                     <h3 class="card__name">
-                        <i
-                           class="fa-solid fa-martini-glass-citrus card__icon"></i>
-                        Entertainment
-                     </h3>
-                     <span class="card__value">$ 3,500</span>
-                  </div>
-               </div>
-            </div>
-         </div>
+                        <span class="movements__row--name">
+                            <label class="movements__row__name--label"
+                                >Taxi to NY</label
+                            >
+                            <div
+                                class="movements__type movements__type--income"
+                            >
+                                Transportation
+                            </div>
+                        </span>
+                        <div class="movements__date">3 days ago</div>
+                        <div class="movements__value">25€</div>
+                    </div>
 
-         <!-- MOVEMENTS-->
-         <div class="movements__wrapper">
-            <div class="inputs__wrapper">
-               <div class="inputs__container">
-                  <input
-                     type="text"
-                     id="description"
-                     placeholder="Description"
-                     class="form__input col-50" />
-                  <input
-                     type="number"
-                     id="amount"
-                     placeholder="Amount"
-                     class="form__input col-50" />
-               </div>
+                    <div class="movements__row">
+                        <span class="fa-solid fa-house card__icon"></span>
+                        <span class="movements__row--name">
+                            <label class="movements__row__name--label"
+                                >Coffe</label
+                            >
+                            <div
+                                class="movements__type movements__type--income"
+                            >
+                                Entertainment
+                            </div>
+                        </span>
+                        <div class="movements__date">21 May 2024</div>
+                        <div class="movements__value">6€</div>
+                    </div>
 
-               <div class="btn__container">
-                  <button id="add__income" class="form__btn col-50">
-                     Add Income
-                  </button>
-                  <button id="add__expense" class="form__btn col-50">
-                     Add Expense
-                  </button>
-               </div>
+                    <div class="movements__row">
+                        <span class="fa-solid fa-house card__icon"></span>
+                        <span class="movements__row--name">
+                            <label class="movements__row__name--label"
+                                >Dinner</label
+                            >
+                            <div
+                                class="movements__type movements__type--income"
+                            >
+                                Entertainment
+                            </div>
+                        </span>
+                        <div class="movements__date">06 May 2024</div>
+                        <div class="movements__value">80€</div>
+                    </div>
+                </div>
             </div>
-
-            <div class="movements__container">
-               <h1 class="movements__header">Last Transactions</h1>
-               <div class="movements__row">
-                  <label>Taxi to NY</label>
-                  <div class="movements__type movements__type--income">
-                     1 income
-                  </div>
-                  <div class="movements__date">3 days ago</div>
-                  <div class="movements__value">4 000€</div>
-               </div>
-               <div class="movements__row">
-                  <div class="movements__type movements__type--outcome">
-                     1 outcome
-                  </div>
-                  <div class="movements__date">24/01/2037</div>
-                  <div class="movements__value">-378€</div>
-               </div>
-               <div class="movements__row">
-                  <div class="movements__type movements__type--outcome">
-                     2 income
-                  </div>
-                  <div class="movements__date">4/06/2037</div>
-                  <div class="movements__value">-78€</div>
-               </div>
-               <div class="movements__row">
-                  <div class="movements__type movements__type--outcome">
-                     2 outcome
-                  </div>
-                  <div class="movements__date">2/01/2037</div>
-                  <div class="movements__value">-555€</div>
-               </div>
-            </div>
-         </div>
-         <!-- </div> -->
-      </div>
-      <script src="script.js"></script>
-   </body>
+            <!-- </div> -->
+        </div>
+        <script src="script.js"></script>
+    </body>
 </html>
