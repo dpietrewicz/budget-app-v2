@@ -45,6 +45,7 @@
                      </h3>
                      <span class="card__value">$ 3,500</span>
                   </div>
+
                   <div class="card">
                      <h3 class="card__name">
                         <span class="fa-solid fa-house card__icon"></span>
@@ -80,20 +81,20 @@
                      type="text"
                      id="description"
                      placeholder="Description"
-                     class="form__input col-50" />
+                     class="form__input" />
                   <input
                      type="number"
                      id="amount"
                      placeholder="Amount"
-                     class="form__input col-50" />
-               </div>
+                     class="form__input form__amount" />
 
-               <select class="form__input">
-                  <option value="Transportation">Transportation</option>
-                  <option value="Housing">Housing</option>
-                  <option value="Groceries">Groceries</option>
-                  <option value="Entertainment">Entertainment</option>
-               </select>
+                  <select class="form__input">
+                     <option value="Transportation">Transportation</option>
+                     <option value="Housing">Housing</option>
+                     <option value="Groceries">Groceries</option>
+                     <option value="Entertainment">Entertainment</option>
+                  </select>
+               </div>
 
                <div class="btn__container">
                   <button id="add__income" class="form__btn col-50">
@@ -107,6 +108,7 @@
 
             <div class="movements__container">
                <h1 class="movements__header">Last Transactions</h1>
+
                <div class="movements__row">
                   <span class="fa-solid fa-house card__icon"></span>
                   <span class="movements__row--name">
