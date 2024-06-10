@@ -55,22 +55,25 @@ body {
    justify-content: space-between;
 }
 
-.summary__inputs {
+.summary__balance {
    display: flex;
-   justify-content: space-evenly;
-   margin-bottom: 5rem;
+   justify-content: space-around;
 }
 
-.summary__input {
-   border: 3px solid var(--color-blue);
-   border-radius: 10rem;
-   padding: 0.1rem 1rem;
-   font-size: 1.8rem;
-   font-weight: 600;
-   color: #444;
-   display: flex;
-   justify-content: center;
-   flex: 0;
+.balance__label {
+   font-size: 2rem;
+   font-weight: 500;
+   margin-bottom: -0.2rem;
+}
+
+.balance__date {
+   font-size: 1.2rem;
+   color: #888;
+}
+
+.balance__value {
+   font-size: 3rem;
+   font-weight: 500;
 }
 
 .summary__cards--wrapper {
@@ -142,7 +145,7 @@ body {
    font-size: 1.4rem;
    border-radius: 0.8rem;
    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-   display: flex;
+   display: inline-flex;
    align-items: center;
    justify-content: center;
 }
@@ -164,13 +167,58 @@ body {
    /* overflow: scroll; */
 }
 
+.movements__summary {
+   display: flex;
+   align-items: baseline;
+   padding: 0 0.3rem;
+   margin: 0 1.2rem;
+}
+
+.summary__label {
+   font-size: 1.2rem;
+   font-weight: 500;
+   text-transform: uppercase;
+   /* margin-right: 0.8rem; */
+   margin: auto;
+}
+
+.summary__value {
+   font-size: 2rem;
+   margin-right: 2.5rem;
+}
+
+.btn--sort {
+   margin-left: auto;
+   border: none;
+   background: none;
+   font-size: 1.3rem;
+   font-weight: 500;
+   cursor: pointer;
+}
+
+.movements__summary--income,
+.movements__summary--outcome {
+   border: 3px solid var(--color-gray);
+   border-radius: 10rem;
+   padding: 0.2rem 1.2rem;
+   font-size: 1.8rem;
+   font-weight: 600;
+   color: #444;
+   display: flex;
+   justify-content: space-evenly;
+   flex: 0;
+}
+
 .inputs__wrapper {
-   padding-bottom: 7rem;
+   padding-bottom: 4rem;
+   padding-top: 4rem;
    line-height: 6rem;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
    margin: 0 1.2rem;
+   border-top: 1px solid #ccc;
+   border-bottom: 1px solid #ccc;
 }
 
 .inputs__container {
@@ -285,11 +333,14 @@ input[type='radio']:checked::before {
 }
 
 .movements__container {
-   padding-bottom: 5rem;
+   padding-bottom: 1.5rem;
    height: 40rem;
+   margin: 0 1.2rem;
+   border-bottom: 1px solid #ccc;
 }
 
 .movements__header {
+   margin-top: 4rem;
    font-size: 1.6rem;
    font-weight: 600;
    margin-bottom: 1.5rem;

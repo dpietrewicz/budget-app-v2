@@ -17,21 +17,15 @@
    </head>
    <body>
       <div class="page__wrapper">
-         <!-- <div class="app"> -->
-
          <div class="summary__wrapper">
-            <!-- SUMMARY -->
-            <!-- Incomes -->
-            <div class="summary__inputs">
-               <div class="summary__input">
-                  Income
-                  <span class="planner__inputs--value">$10,000</span>
+            <div class="summary__balance">
+               <div>
+                  <p class="balance__label">Current balance</p>
+                  <p class="balance__date">
+                     As of <span class="date">05/03/2037</span>
+                  </p>
                </div>
-               <!-- Outcomes -->
-               <div class="summary__input">
-                  Outcome
-                  <span class="planner__inputs--value">$1,500</span>
-               </div>
+               <p class="balance__value">0000€</p>
             </div>
 
             <!-- ELEMENTS  -->
@@ -74,7 +68,9 @@
          </div>
 
          <!-- MOVEMENTS-->
+
          <div class="movements__wrapper">
+            <!-- Inputs Area  -->
             <div class="inputs__wrapper">
                <div class="inputs__container">
                   <input
@@ -88,13 +84,6 @@
                      placeholder="Amount"
                      class="form__input form__amount" />
                </div>
-
-               <!-- <select class="form__input">
-                  <option value="Transportation">Transportation</option>
-                  <option value="Housing">Housing</option>
-                  <option value="Groceries">Groceries</option>
-                  <option value="Entertainment">Entertainment</option>
-               </select> -->
 
                <div class="type__container">
                   <ul class="select__type">
@@ -167,6 +156,14 @@
                   <div class="movements__date">06 May 2024</div>
                   <div class="movements__value">80€</div>
                </div>
+            </div>
+
+            <div class="movements__summary">
+               <p class="summary__label">In</p>
+               <p class="summary__value summary__value--in">3000€</p>
+               <p class="summary__label">Out</p>
+               <p class="summary__value summary__value--out">5000€</p>
+               <button class="btn--sort">&downarrow; SORT</button>
             </div>
          </div>
          <!-- </div> -->
