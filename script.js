@@ -51,12 +51,12 @@ const displayMovements = function () {
 
    const html = `<div class="movements__row">
                   <span class="fa-solid fa-house card__icon"></span>
-                  <span class="movements__row--name">
-                     <label class="movements__row__name--label"
+                  <span class="movements__row--description">
+                     <label class="movements__row__description--name"
                         >${description}</label
                      >
-                     <div class="movements__type movements__type--income">
-                        Transportation
+                     <div class="movements__row__description--type">
+                        Entertainment
                      </div>
                   </span>
                   <div class="movements__date">${date}</div>

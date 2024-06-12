@@ -16,7 +16,7 @@
       <title>Budget App</title>
    </head>
    <body>
-      <div class="page__wrapper">
+      <main class="page__wrapper">
          <div class="summary__wrapper">
             <div class="summary__balance">
                <div>
@@ -71,8 +71,8 @@
 
          <div class="movements__wrapper">
             <!-- Inputs Area  -->
-            <div class="inputs__wrapper">
-               <div class="inputs__container">
+            <form class="inputs__container">
+               <div class="inputs__container--input">
                   <input
                      type="text"
                      id="description"
@@ -82,10 +82,10 @@
                      type="number"
                      id="amount"
                      placeholder="Amount"
-                     class="form__input form__amount" />
+                     class="form__input" />
                </div>
 
-               <div class="type__container">
+               <div class="inputs__container--type">
                   <ul class="select__type">
                      <li>
                         <input type="radio" id="transportation" name="type" />
@@ -106,7 +106,7 @@
                   </ul>
                </div>
 
-               <div class="btn__container">
+               <div class="inputs__container--btn">
                   <button id="add__income" class="form__btn col-50">
                      Add Income
                   </button>
@@ -114,17 +114,17 @@
                      Add Expense
                   </button>
                </div>
-            </div>
+            </form>
 
             <h1 class="movements__header">Last Transactions</h1>
             <div class="movements__container">
                <div class="movements__row">
                   <span class="fa-solid fa-house card__icon"></span>
-                  <span class="movements__row--name">
-                     <label class="movements__row__name--label"
+                  <span class="movements__row--description">
+                     <label class="movements__row__description--name"
                         >Taxi to NY</label
                      >
-                     <div class="movements__type movements__type--income">
+                     <div class="movements__row__description--type">
                         Transportation
                      </div>
                   </span>
@@ -134,9 +134,11 @@
 
                <div class="movements__row">
                   <span class="fa-solid fa-house card__icon"></span>
-                  <span class="movements__row--name">
-                     <label class="movements__row__name--label">Coffe</label>
-                     <div class="movements__type movements__type--income">
+                  <span class="movements__row--description">
+                     <label class="movements__row__description--name"
+                        >Coffe</label
+                     >
+                     <div class="movements__row__description--type">
                         Entertainment
                      </div>
                   </span>
@@ -146,9 +148,11 @@
 
                <div class="movements__row">
                   <span class="fa-solid fa-house card__icon"></span>
-                  <span class="movements__row--name">
-                     <label class="movements__row__name--label">Dinner</label>
-                     <div class="movements__type movements__type--income">
+                  <span class="movements__row--description">
+                     <label class="movements__row__description--name"
+                        >Dinner</label
+                     >
+                     <div class="movements__row__description--type">
                         Entertainment
                      </div>
                   </span>
@@ -165,8 +169,7 @@
                <button class="btn--sort">&downarrow; SORT</button>
             </div>
          </div>
-         <!-- </div> -->
-      </div>
+      </main>
       <script src="script.js"></script>
    </body>
 </html>
