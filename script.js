@@ -1,20 +1,31 @@
 'use strict';
 
 const account = {
-   incomes: [1000, 5000, 7000],
-   incomeDates: [
-      '2019-11-18T21:31:17.178Z',
-      '2019-11-23T07:42:02.383Z',
-      '2020-11-28T09:15:04.904Z',
-   ],
-   outcomes: [-800, -60, -20],
-   outcomeDates: [
-      '2019-12-18T21:31:17.178Z',
-      '2019-12-23T07:42:02.383Z',
-      '2020-12-28T09:15:04.904Z',
-   ],
-   currency: 'EUR',
-   locale: 'pt-PT',
+   incomes: {
+      name: ['salary', 'interest', 'selling'],
+      amount: [1000, 5000, 7000],
+      category: ['Groceries', 'Entertainment', 'Housing'],
+      date: [
+         '2019-11-18T21:31:17.178Z',
+         '2019-11-23T07:42:02.383Z',
+         '2020-11-28T09:15:04.904Z',
+      ],
+      currency: 'EUR',
+      locale: 'pt-PT',
+   },
+
+   outcomes: {
+      name: ['book', 'coke', 'dinner'],
+      amount: [-10, -6, -50],
+      category: ['Entertainment', 'Housing', 'Entertainment'],
+      date: [
+         '2019-12-18T21:31:17.178Z',
+         '2019-12-23T07:42:02.383Z',
+         '2020-12-28T09:15:04.904Z',
+      ],
+      currency: 'EUR',
+      locale: 'pt-PT',
+   },
 };
 
 const account1 = {
@@ -56,51 +67,45 @@ const formatMovementDate = function (date, locale) {
    }
 };
 
-const displayMovements = function (acc) {
+const addNewMovement = function (acc) {
    const description = inputDescription.value;
-   // const amount = Number(inputAmount.value);
-   // const now = new Date();
-   // const locale = navigator.language;
-   // const options = {
-   //    day: 'numeric',
-   //    month: 'long',
-   //    year: 'numeric',
-   // };
-
-   // Add date
-   // const date = new Intl.DateTimeFormat(locale, options).format(now);
+   const amount = +inputAmount.value;
 
    // Add category
    const getCategory = document.querySelector('input[name="category"]:checked');
-
    const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
-
    const category = capitalize(getCategory.value);
 
-   // btnRadio.forEach((radio) => {
-   //    if (radio.checked) {
-   //       console.log(radio.value);
-   //    }
-   // });
+   acc.name.push(description);
+   acc.amount.push(amount);
+   acc.date.push(new Date().toISOString());
+   acc.category.push(category);
+};
 
-   const movs = acc.movements;
+const displayMovements = function (acc) {
+   const movs = acc.incomes;
+   // console.log(movs);
+   // console.log(acc);
 
-   movs.forEach(function (mov, i) {
-      const date = new Date(acc.movementsDates[i]);
+   movs.forEach(function (acc, i) {
+      const date = new Date(acc.date[i]);
       const displayDate = formatMovementDate(date, acc.locale);
+      const name = acc.name[i];
+      const amount = acc.amount[i];
+      const category = acc.category[i];
 
       const html = `<div class="movements__row">
                   <span class="fa-solid fa-house card__icon"></span>
                   <span class="movements__row--description">
                      <label class="movements__row__description--name"
-                        >${description}</label
+                        >${name}</label
                      >
                      <div class="movements__row__description--type">
                         ${category}
                      </div>
                   </span>
                   <div class="movements__date">${displayDate}</div>
-                  <div class="movements__value">${mov}€</div>
+                  <div class="movements__value">${amount}€</div>
                </div>`;
 
       containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -112,5 +117,8 @@ const displayMovements = function (acc) {
 // Event Handlers
 btnIncome.addEventListener('click', function (e) {
    e.preventDefault();
-   displayMovements(account1.movements);
+   addNewMovement(account);
+   displayMovements(account);
 });
+
+// How to create universal displayMovements function to keep current account - object structure?
