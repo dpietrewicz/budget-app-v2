@@ -37,7 +37,13 @@ const account1 = {
    ],
 };
 
+const account123 = {
+   incomes: [],
+   outcomes: [],
+};
+
 /// Elements
+/*
 const labelDate = document.querySelector('date');
 const labelBalance = document.querySelector('.balance__value');
 const labelSumIn = document.querySelector('.summary__value--in');
@@ -67,6 +73,8 @@ const formatMovementDate = function (date, locale) {
    }
 };
 
+const addMovement = function () {};
+
 const addNewMovement = function (acc) {
    const description = inputDescription.value;
    const amount = +inputAmount.value;
@@ -87,7 +95,7 @@ const displayMovements = function (acc) {
    // console.log(movs);
    // console.log(acc);
 
-   movs.forEach(function (acc, i) {
+   movs.forEach(function (acc, i, inout) {
       const date = new Date(acc.date[i]);
       const displayDate = formatMovementDate(date, acc.locale);
       const name = acc.name[i];
@@ -122,3 +130,147 @@ btnIncome.addEventListener('click', function (e) {
 });
 
 // How to create universal displayMovements function to keep current account - object structure?
+
+console.log(Object.keys(account));
+console.log(Object.values(account));
+console.log(Object.entries(account));
+*/
+
+// ITEM CONTROLLER
+const itemCtrl = function () {
+   //item constructor
+   const Item = function (id, description, amount) {
+      this.id = id;
+      this.description = description;
+      this.amount = amount;
+   };
+
+   //data structure
+   const data = {
+      incomes: [],
+      outcomes: [],
+   };
+   console.log(data);
+
+   //public method
+   return {
+      logData: function () {
+         return data;
+      },
+
+      addMoney: function (description, amount) {
+         //create random id
+         let ID = itemCtrl.createID();
+         //create new item
+         newMoney = new Item(ID, description, amount);
+         // push it into the array
+         data.incomes.push(newMoney);
+
+         return newMoney;
+      },
+
+      createID: function () {
+         //create random id number between 0 and 10000
+         const idNum = Math.floor(Math.random() * 1000);
+         return idNum;
+      },
+   };
+};
+
+// UI CONTROLLER
+const UICtrl = (function () {
+   const UISelectors = {
+      incomeBtn: '#add__income',
+      expenseBtn: '#add__expense',
+      description: '#description',
+      amount: '#amount',
+      moneyAvailable: '#amount__available',
+      moneyIn: '#amount__in',
+      moneyOut: '#amount__out',
+      itemsContainer: '#items__container',
+   };
+
+   //public methods
+   return {
+      //return ui selectors
+      getSelectors: function () {
+         return UISelectors;
+      },
+      getDescriptionInput: function () {
+         return {
+            descriptionInput: document.querySelector(UISelectors.description)
+               .value,
+         };
+      },
+      getValueInput: function () {
+         return {
+            amountInput: document.querySelector(UISelectors.amount).value,
+         };
+      },
+      addIncomeItem: function (item) {
+         //create new div
+         const div = document.createElement('div');
+         //add class
+         div.classList = 'item income';
+         //add id to the item
+         div.id = `item-${item.id}`;
+         //add html
+         div.innerHTML = `
+         <div class="movements__row">
+                  <span class="fa-solid fa-house card__icon"></span>
+                  <span class="movements__row--description">
+                     <label class="movements__row__description--name"
+                        >${item.description}</label
+                     >
+                     <div class="movements__row__description--type">
+                        Entertainement
+                     </div>
+                  </span>
+                  <div class="movements__value">${item.amount}€</div>
+               </div>`;
+
+         //insert income into the list
+         document
+            .querySelector(UISelectors.itemsContainer)
+            .insertAdjacentElement('afterbegin', div);
+      },
+   };
+})();
+
+//APP CONTROLLER
+
+const App = (function () {
+   const loadEventListeners = function () {
+      //get ui selectors
+      const UISelectors = UICtrl.getSelectors();
+      //add new income
+      document
+         .querySelector(UISelectors.incomeBtn)
+         .addEventListener('click', addIncome);
+   };
+
+   //add new income
+   const addIncome = function () {
+      //get description and amount values
+      const description = UICtrl.getDescriptionInput();
+      const amount = UICtrl.getValueInput();
+      // if inputs are not empty
+      if (description.descriptionInput !== '' && amount.amountInput !== '') {
+         //add new item
+         const newMoney = itemCtrl.addMoney(
+            description.descriptionInput,
+            amount.amountInput
+         );
+         UICtrl.addIncomeItem(newMoney);
+      }
+   };
+
+   //init function
+   return {
+      init: function () {
+         loadEventListeners();
+      },
+   };
+})(itemCtrl, UICtrl);
+
+App.init();

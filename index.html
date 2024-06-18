@@ -20,7 +20,9 @@
          <div class="summary__wrapper">
             <div class="summary__balance">
                <div>
-                  <p class="balance__label">Current balance</p>
+                  <p class="balance__label" id="amount__available">
+                     Current balance
+                  </p>
                   <p class="balance__date">
                      As of <span class="date">05/03/2037</span>
                   </p>
@@ -133,7 +135,7 @@
             </form>
 
             <h1 class="movements__header">Last Transactions</h1>
-            <div class="movements__container">
+            <div class="movements__container" id="items__container">
                <div class="movements__row">
                   <span class="fa-solid fa-house card__icon"></span>
                   <span class="movements__row--description">
@@ -179,9 +181,13 @@
 
             <div class="movements__summary">
                <p class="summary__label">In</p>
-               <p class="summary__value summary__value--in">3000€</p>
+               <p class="summary__value summary__value--in" id="amount__in">
+                  3000€
+               </p>
                <p class="summary__label">Out</p>
-               <p class="summary__value summary__value--out">5000€</p>
+               <p class="summary__value summary__value--out" id="amount__out">
+                  5000€
+               </p>
                <button class="btn--sort">&downarrow; SORT</button>
             </div>
          </div>
