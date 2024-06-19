@@ -136,6 +136,8 @@ console.log(Object.values(account));
 console.log(Object.entries(account));
 */
 
+/*
+
 // ITEM CONTROLLER
 const itemCtrl = function () {
    //item constructor
@@ -150,7 +152,6 @@ const itemCtrl = function () {
       incomes: [],
       outcomes: [],
    };
-   console.log(data);
 
    //public method
    return {
@@ -216,18 +217,10 @@ const UICtrl = (function () {
          div.id = `item-${item.id}`;
          //add html
          div.innerHTML = `
-         <div class="movements__row">
-                  <span class="fa-solid fa-house card__icon"></span>
-                  <span class="movements__row--description">
+         
                      <label class="movements__row__description--name"
-                        >${item.description}</label
-                     >
-                     <div class="movements__row__description--type">
-                        Entertainement
-                     </div>
-                  </span>
-                  <div class="movements__value">${item.amount}€</div>
-               </div>`;
+                        >${item.description}</label>
+               `;
 
          //insert income into the list
          document
@@ -253,6 +246,7 @@ const App = (function () {
    const addIncome = function () {
       //get description and amount values
       const description = UICtrl.getDescriptionInput();
+      console.log(description);
       const amount = UICtrl.getValueInput();
       // if inputs are not empty
       if (description.descriptionInput !== '' && amount.amountInput !== '') {
@@ -274,3 +268,78 @@ const App = (function () {
 })(itemCtrl, UICtrl);
 
 App.init();
+
+
+<div class="movements__row">
+                  <span class="fa-solid fa-house card__icon"></span>
+                  <span class="movements__row--description">
+                     <label class="movements__row__description--name"
+                        >${item.description}</label
+                     >
+                     <div class="movements__row__description--type">
+                        Entertainement
+                     </div>
+                  </span>
+                  <div class="movements__value">${item.amount}€</div>
+               </div>
+
+
+*/
+
+class Item {
+   date = new Date();
+   id = (Date.now() + '').slice(-10);
+
+   constructor(description, amount) {
+      this.description = description;
+      this.amount = amount;
+      // this.category = category;
+   }
+
+   getCategory() {
+      const getCategory = document.querySelector(
+         'input[name="category"]:checked'
+      );
+      // const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
+      // this.category = capitalize(getCategory.value);
+      return getCategory;
+   }
+}
+
+const incomeBtn = document.querySelector('#add__income');
+const expenseBtn = document.querySelector('#add__expense');
+const description = document.querySelector('#description');
+const amount = document.querySelector('#amount');
+const type = document.querySelector('#select__type');
+const moneyAvailable = document.querySelector('#amount__available');
+const moneyIn = document.querySelector('#amount__in');
+const moneyOut = document.querySelector('#amount__out');
+const itemsContainer = document.querySelector('#items__container');
+
+class App {
+   data = [];
+
+   constructor() {
+      //Get current data
+      incomeBtn.addEventListener('click', this.newMovement().bind(this));
+   }
+
+   newMovement(e) {
+      //Get data from form
+      const description = description.value;
+      const amount = +amount.value;
+      const type = type.value;
+
+      if (description) {
+         return alert('alert');
+      }
+
+      const item = new Item(description, amount);
+      this.data.push(item);
+      console.log(item);
+      console.log(this.data);
+      console.log(this);
+   }
+}
+
+const app = new App();
