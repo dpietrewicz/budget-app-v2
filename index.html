@@ -73,7 +73,7 @@
 
          <div class="movements__wrapper">
             <!-- Inputs Area  -->
-            <form class="inputs__container">
+            <form class="inputs__container" id="input__form">
                <div class="inputs__container--input">
                   <input
                      type="text"
@@ -87,7 +87,19 @@
                      class="form__input" />
                </div>
 
-               <div class="inputs__container--type">
+               <!-- ---- -->
+
+               <div class="form__row">
+                  <label class="form__label">Type</label>
+                  <select class="form__input form__input--type">
+                     <option value="running" type="radio">Running</option>
+                     <option value="cycling" type="radio">Cycling</option>
+                  </select>
+               </div>
+
+               <!-- ---- -->
+
+               <!-- <div class="inputs__container--type">
                   <ul class="select__type">
                      <li>
                         <input
@@ -122,6 +134,36 @@
                         <label for="entertainment">Entertainment</label>
                      </li>
                   </ul>
+               </div> -->
+
+               <div class="inputs__container--type">
+                  <input
+                     value="transportation"
+                     type="radio"
+                     id="transportation"
+                     name="category" />
+                  <label for="transportation">Transportation</label>
+
+                  <input
+                     value="housing"
+                     type="radio"
+                     id="housing"
+                     name="category" />
+                  <label for="housing">Housing</label>
+
+                  <input
+                     value="groceries"
+                     type="radio"
+                     id="groceries"
+                     name="category" />
+                  <label for="groceries">Groceries</label>
+
+                  <input
+                     value="entertainment"
+                     type="radio"
+                     id="entertainment"
+                     name="category" />
+                  <label for="entertainment">Entertainment</label>
                </div>
 
                <div class="inputs__container--btn">

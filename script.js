@@ -286,60 +286,117 @@ App.init();
 
 */
 
-class Item {
-   date = new Date();
-   id = (Date.now() + '').slice(-10);
-
-   constructor(description, amount) {
-      this.description = description;
-      this.amount = amount;
-      // this.category = category;
-   }
-
-   getCategory() {
-      const getCategory = document.querySelector(
-         'input[name="category"]:checked'
-      );
-      // const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
-      // this.category = capitalize(getCategory.value);
-      return getCategory;
-   }
-}
-
 const incomeBtn = document.querySelector('#add__income');
 const expenseBtn = document.querySelector('#add__expense');
-const description = document.querySelector('#description');
-const amount = document.querySelector('#amount');
-const type = document.querySelector('#select__type');
+
+const inputForm = document.querySelector('#input__form');
+const type = document.querySelector('.select__type');
 const moneyAvailable = document.querySelector('#amount__available');
 const moneyIn = document.querySelector('#amount__in');
 const moneyOut = document.querySelector('#amount__out');
 const itemsContainer = document.querySelector('#items__container');
 
-class App {
-   data = [];
+const inputType = document.querySelector('.form__input--type');
+const inn = document.querySelector('.inputs__container--type');
+const radioButtons = document.querySelectorAll('input[name="category"]');
+console.log(description.value);
 
-   constructor() {
-      //Get current data
-      incomeBtn.addEventListener('click', this.newMovement().bind(this));
-   }
+description;
 
-   newMovement(e) {
-      //Get data from form
-      const description = description.value;
-      const amount = +amount.value;
-      const type = type.value;
-
-      if (description) {
-         return alert('alert');
-      }
-
-      const item = new Item(description, amount);
-      this.data.push(item);
-      console.log(item);
-      console.log(this.data);
-      console.log(this);
+class Item {
+   constructor(description, amount) {
+      this.description = description;
+      this.amount = amount;
+      // this.category = category;
+      // this.category = category;
    }
 }
 
-const app = new App();
+class UI {
+   description;
+
+   addMovement(mov) {
+      const html = `<div class="movements__row">
+                  <span class="fa-solid fa-house card__icon"></span>
+                  <span class="movements__row--description">
+                     <label class="movements__row__description--name"
+                        >${mov.description}</label
+                     >
+                     <div class="movements__row__description--type">
+                        ${mov.category}
+                     </div>
+                  </span>
+                  <div class="movements__value">${mov.amount}€</div>
+               </div>`;
+
+      itemsContainer.insertAdjacentHTML('afterbegin', html);
+   }
+}
+
+incomeBtn.addEventListener('click', function (e) {
+   e.preventDefault();
+   //Get form values
+   const description = document.querySelector('#description').value;
+   const amount = document.querySelector('#amount').value;
+
+   //Instantiate movement
+   const movement = new Item(description, amount);
+   console.log(movement);
+
+   //Instantiate UI
+   const ui = new UI();
+
+   //Validate
+   if (description === '' || amount === '') {
+      // Error alert
+
+      alert('Please fill in all fields');
+   } else {
+      // Add Movement to list
+      ui.addMovement(movement);
+   }
+});
+
+// class App {
+//    data = [];
+
+//    constructor() {
+//       //Get current data
+//       incomeBtn.addEventListener('click', this.getCategoryInput);
+//    }
+
+//    getDescriptionInput(e) {
+//       e.preventDefault();
+//       console.log(description.value);
+//    }
+
+//    getAmountInput() {
+//       console.log(amount.value);
+//    }
+
+//    getCategoryInput(e) {
+//       e.preventDefault();
+//       // const cat = document.querySelector('input[name="category"]:checked');
+//       // const type111 = type.value;
+//       // const tt = inputType.value;
+//       let selectedCat;
+//       for (const radioButton of radioButtons) {
+//          if (radioButton.checked) {
+//             selectedCat = radioButton.value;
+//             break;
+//          }
+//       }
+//       console.log(selectedCat);
+//       // const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
+//       // this.category = capitalize(getCategory.value);
+//    }
+
+//    addIncome() {
+//       const description = this.getDescriptionInput;
+//       const amount = this.getAmountInput;
+
+//       const newMoney = Item.addMoney();
+//    }
+// }
+
+// const app = new App();
