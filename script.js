@@ -304,18 +304,39 @@ console.log(description.value);
 description;
 
 class Item {
-   constructor(description, amount) {
+   data = [];
+
+   constructor(description, amount, category, date) {
       this.description = description;
       this.amount = amount;
-      // this.category = category;
-      // this.category = category;
+      this.category = category;
+      this.capitalize();
    }
+
+   capitalize() {
+      this.category = this.category[0].toUpperCase() + this.category.slice(1);
+      return this.category;
+   }
+
+   // capitalize = (str) => str[0].toUpperCase() + str.slice;
+   // getCategoryInput(e) {
+   //    e.preventDefault();
+   //    const cat = document.querySelector('input[name="category"]:checked');
+   //    // const type111 = type.value;
+   //    // const tt = inputType.value;
+   //    let selectedCat;
+   //    for (const radioButton of radioButtons) {
+   //       if (radioButton.checked) {
+   //          selectedCat = radioButton.value;
+   //          break;
+   //       }
+   //    }
+   //    console.log(selectedCat);
+   // }
 }
 
 class UI {
-   description;
-
-   addMovement(mov) {
+   displayMovement(mov) {
       const html = `<div class="movements__row">
                   <span class="fa-solid fa-house card__icon"></span>
                   <span class="movements__row--description">
@@ -331,6 +352,20 @@ class UI {
 
       itemsContainer.insertAdjacentHTML('afterbegin', html);
    }
+
+   // formatMovementDate = function (date, locale) {
+   //    const calcDaysPassed = (date1, date2) =>
+   //       Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+   //    const daysPassed = calcDaysPassed(new Date(), date);
+
+   //    if (daysPassed === 0) return 'Today';
+   //    if (daysPassed === 1) return 'Yesterday';
+   //    if (daysPassed <= 7) return `${daysPassed} days ago`;
+   //    else {
+   //       return new Intl.DateTimeFormat(locale).format(date);
+   //    }
+   // };
 }
 
 incomeBtn.addEventListener('click', function (e) {
@@ -338,9 +373,12 @@ incomeBtn.addEventListener('click', function (e) {
    //Get form values
    const description = document.querySelector('#description').value;
    const amount = document.querySelector('#amount').value;
+   const category = document.querySelector(
+      'input[name="category"]:checked'
+   ).value;
 
    //Instantiate movement
-   const movement = new Item(description, amount);
+   const movement = new Item(description, amount, category);
    console.log(movement);
 
    //Instantiate UI
@@ -353,7 +391,7 @@ incomeBtn.addEventListener('click', function (e) {
       alert('Please fill in all fields');
    } else {
       // Add Movement to list
-      ui.addMovement(movement);
+      ui.displayMovement(movement);
    }
 });
 
