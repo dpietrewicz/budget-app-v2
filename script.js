@@ -1,45 +1,45 @@
-'use strict';
+"use strict";
 
 const account = {
-   incomes: {
-      name: ['salary', 'interest', 'selling'],
-      amount: [1000, 5000, 7000],
-      category: ['Groceries', 'Entertainment', 'Housing'],
-      date: [
-         '2019-11-18T21:31:17.178Z',
-         '2019-11-23T07:42:02.383Z',
-         '2020-11-28T09:15:04.904Z',
-      ],
-      currency: 'EUR',
-      locale: 'pt-PT',
-   },
+    incomes: {
+        name: ["salary", "interest", "selling"],
+        amount: [1000, 5000, 7000],
+        category: ["Groceries", "Entertainment", "Housing"],
+        date: [
+            "2019-11-18T21:31:17.178Z",
+            "2019-11-23T07:42:02.383Z",
+            "2020-11-28T09:15:04.904Z",
+        ],
+        currency: "EUR",
+        locale: "pt-PT",
+    },
 
-   outcomes: {
-      name: ['book', 'coke', 'dinner'],
-      amount: [-10, -6, -50],
-      category: ['Entertainment', 'Housing', 'Entertainment'],
-      date: [
-         '2019-12-18T21:31:17.178Z',
-         '2019-12-23T07:42:02.383Z',
-         '2020-12-28T09:15:04.904Z',
-      ],
-      currency: 'EUR',
-      locale: 'pt-PT',
-   },
+    outcomes: {
+        name: ["book", "coke", "dinner"],
+        amount: [-10, -6, -50],
+        category: ["Entertainment", "Housing", "Entertainment"],
+        date: [
+            "2019-12-18T21:31:17.178Z",
+            "2019-12-23T07:42:02.383Z",
+            "2020-12-28T09:15:04.904Z",
+        ],
+        currency: "EUR",
+        locale: "pt-PT",
+    },
 };
 
 const account1 = {
-   movements: [1000, 5000, 7000],
-   movementsDates: [
-      '2019-11-18T21:31:17.178Z',
-      '2019-11-23T07:42:02.383Z',
-      '2020-11-28T09:15:04.904Z',
-   ],
+    movements: [1000, 5000, 7000],
+    movementsDates: [
+        "2019-11-18T21:31:17.178Z",
+        "2019-11-23T07:42:02.383Z",
+        "2020-11-28T09:15:04.904Z",
+    ],
 };
 
 const account123 = {
-   incomes: [],
-   outcomes: [],
+    incomes: [],
+    outcomes: [],
 };
 
 /// Elements
@@ -286,58 +286,54 @@ App.init();
 
 */
 
-const incomeBtn = document.querySelector('#add__income');
-const expenseBtn = document.querySelector('#add__expense');
+const incomeBtn = document.querySelector("#add__income");
+const expenseBtn = document.querySelector("#add__expense");
 
-const inputForm = document.querySelector('#input__form');
-const type = document.querySelector('.select__type');
-const moneyAvailable = document.querySelector('#amount__available');
-const moneyIn = document.querySelector('#amount__in');
-const moneyOut = document.querySelector('#amount__out');
-const itemsContainer = document.querySelector('#items__container');
+const inputForm = document.querySelector("#input__form");
+const type = document.querySelector(".select__type");
+const moneyAvailable = document.querySelector("#amount__available");
+const moneyIn = document.querySelector("#amount__in");
+const moneyOut = document.querySelector("#amount__out");
+const itemsContainer = document.querySelector("#items__container");
 
-const inputType = document.querySelector('.form__input--type');
-const inn = document.querySelector('.inputs__container--type');
+const inputType = document.querySelector(".form__input--type");
+const inn = document.querySelector(".inputs__container--type");
 const radioButtons = document.querySelectorAll('input[name="category"]');
-console.log(description.value);
-
-description;
 
 class Item {
-   data = [];
+    data = [];
 
-   constructor(description, amount, category, date) {
-      this.description = description;
-      this.amount = amount;
-      this.category = category;
-      this.capitalize();
-   }
+    constructor(description, amount, category, date) {
+        this.description = description;
+        this.amount = amount;
+        this.category = category;
+        this.date = date;
+        this.getInputValues();
+        this.capitalize();
+        this.addDate();
+    }
 
-   capitalize() {
-      this.category = this.category[0].toUpperCase() + this.category.slice(1);
-      return this.category;
-   }
+    getInputValues() {
+        this.description = document.querySelector("#description").value;
+        this.amount = document.querySelector("#amount").value;
+        this.category = document.querySelector(
+            'input[name="category"]:checked'
+        ).value;
+    }
 
-   // capitalize = (str) => str[0].toUpperCase() + str.slice;
-   // getCategoryInput(e) {
-   //    e.preventDefault();
-   //    const cat = document.querySelector('input[name="category"]:checked');
-   //    // const type111 = type.value;
-   //    // const tt = inputType.value;
-   //    let selectedCat;
-   //    for (const radioButton of radioButtons) {
-   //       if (radioButton.checked) {
-   //          selectedCat = radioButton.value;
-   //          break;
-   //       }
-   //    }
-   //    console.log(selectedCat);
-   // }
+    capitalize() {
+        this.category = this.category[0].toUpperCase() + this.category.slice(1);
+        return this.category;
+    }
+
+    addDate() {
+        this.date = new Intl.DateTimeFormat("pt-PT").format(this.date);
+    }
 }
 
 class UI {
-   displayMovement(mov) {
-      const html = `<div class="movements__row">
+    displayMovement(mov) {
+        const html = `<div class="movements__row">
                   <span class="fa-solid fa-house card__icon"></span>
                   <span class="movements__row--description">
                      <label class="movements__row__description--name"
@@ -347,53 +343,59 @@ class UI {
                         ${mov.category}
                      </div>
                   </span>
+                  <div class="movements__date">${mov.date}</div>
                   <div class="movements__value">${mov.amount}€</div>
                </div>`;
 
-      itemsContainer.insertAdjacentHTML('afterbegin', html);
-   }
+        itemsContainer.insertAdjacentHTML("afterbegin", html);
+    }
 
-   // formatMovementDate = function (date, locale) {
-   //    const calcDaysPassed = (date1, date2) =>
-   //       Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+    // formatMovementDate = function (date, locale) {
+    //    const calcDaysPassed = (date1, date2) =>
+    //       Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
-   //    const daysPassed = calcDaysPassed(new Date(), date);
+    //    const daysPassed = calcDaysPassed(new Date(), date);
 
-   //    if (daysPassed === 0) return 'Today';
-   //    if (daysPassed === 1) return 'Yesterday';
-   //    if (daysPassed <= 7) return `${daysPassed} days ago`;
-   //    else {
-   //       return new Intl.DateTimeFormat(locale).format(date);
-   //    }
-   // };
+    //    if (daysPassed === 0) return 'Today';
+    //    if (daysPassed === 1) return 'Yesterday';
+    //    if (daysPassed <= 7) return `${daysPassed} days ago`;
+    //    else {
+    //       return new Intl.DateTimeFormat(locale).format(date);
+    //    }
+    // };
 }
 
-incomeBtn.addEventListener('click', function (e) {
-   e.preventDefault();
-   //Get form values
-   const description = document.querySelector('#description').value;
-   const amount = document.querySelector('#amount').value;
-   const category = document.querySelector(
-      'input[name="category"]:checked'
-   ).value;
+incomeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    //Get form values
+    //  const description = document.querySelector("#description").value;
+    //  const amount = document.querySelector("#amount").value;
+    //  const category = document.querySelector(
+    //      'input[name="category"]:checked'
+    //  ).value;
 
-   //Instantiate movement
-   const movement = new Item(description, amount, category);
-   console.log(movement);
+    //Instantiate movement
+    const movement = new Item();
+    console.log(movement);
 
-   //Instantiate UI
-   const ui = new UI();
+    //Instantiate UI
+    const ui = new UI();
 
-   //Validate
-   if (description === '' || amount === '') {
-      // Error alert
+    //Validate
+    if (description === "" || amount === "") {
+        // Error alert
 
-      alert('Please fill in all fields');
-   } else {
-      // Add Movement to list
-      ui.displayMovement(movement);
-   }
+        alert("Please fill in all fields");
+    } else {
+        // Add Movement to list
+        ui.displayMovement(movement);
+        movement.data.push(movement);
+        console.log(movement.data);
+    }
 });
+
+// TO DO:
+// *Add 'movement' to 'data' array. (movement is an object, so should it be converted?)
 
 // class App {
 //    data = [];
