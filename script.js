@@ -1,45 +1,45 @@
-"use strict";
+'use strict';
 
 const account = {
-    incomes: {
-        name: ["salary", "interest", "selling"],
-        amount: [1000, 5000, 7000],
-        category: ["Groceries", "Entertainment", "Housing"],
-        date: [
-            "2019-11-18T21:31:17.178Z",
-            "2019-11-23T07:42:02.383Z",
-            "2020-11-28T09:15:04.904Z",
-        ],
-        currency: "EUR",
-        locale: "pt-PT",
-    },
+   incomes: {
+      name: ['salary', 'interest', 'selling'],
+      amount: [1000, 5000, 7000],
+      category: ['Groceries', 'Entertainment', 'Housing'],
+      date: [
+         '2019-11-18T21:31:17.178Z',
+         '2019-11-23T07:42:02.383Z',
+         '2020-11-28T09:15:04.904Z',
+      ],
+      currency: 'EUR',
+      locale: 'pt-PT',
+   },
 
-    outcomes: {
-        name: ["book", "coke", "dinner"],
-        amount: [-10, -6, -50],
-        category: ["Entertainment", "Housing", "Entertainment"],
-        date: [
-            "2019-12-18T21:31:17.178Z",
-            "2019-12-23T07:42:02.383Z",
-            "2020-12-28T09:15:04.904Z",
-        ],
-        currency: "EUR",
-        locale: "pt-PT",
-    },
+   outcomes: {
+      name: ['book', 'coke', 'dinner'],
+      amount: [-10, -6, -50],
+      category: ['Entertainment', 'Housing', 'Entertainment'],
+      date: [
+         '2019-12-18T21:31:17.178Z',
+         '2019-12-23T07:42:02.383Z',
+         '2020-12-28T09:15:04.904Z',
+      ],
+      currency: 'EUR',
+      locale: 'pt-PT',
+   },
 };
 
 const account1 = {
-    movements: [1000, 5000, 7000],
-    movementsDates: [
-        "2019-11-18T21:31:17.178Z",
-        "2019-11-23T07:42:02.383Z",
-        "2020-11-28T09:15:04.904Z",
-    ],
+   movements: [1000, 5000, 7000],
+   movementsDates: [
+      '2019-11-18T21:31:17.178Z',
+      '2019-11-23T07:42:02.383Z',
+      '2020-11-28T09:15:04.904Z',
+   ],
 };
 
 const account123 = {
-    incomes: [],
-    outcomes: [],
+   incomes: [],
+   outcomes: [],
 };
 
 /// Elements
@@ -139,38 +139,35 @@ console.log(Object.entries(account));
 /*
 
 // ITEM CONTROLLER
-const itemCtrl = function () {
-   //item constructor
-   const Item = function (id, description, amount) {
+Class Item {
+   constructor(id, description, amount, category, date) {
       this.id = id;
       this.description = description;
       this.amount = amount;
-   };
+      this.category = category;
+      this.date = date;
+      };
 
    //data structure
-   const data = {
-      incomes: [],
-      outcomes: [],
-   };
+   items = [];
 
    //public method
-   return {
-      logData: function () {
-         return data;
+      logData() {
+         return items;
       },
 
-      addMoney: function (description, amount) {
+      addMoney(description, amount) {
          //create random id
          let ID = itemCtrl.createID();
          //create new item
          newMoney = new Item(ID, description, amount);
          // push it into the array
-         data.incomes.push(newMoney);
+         items.push(newMoney);
 
          return newMoney;
       },
 
-      createID: function () {
+      createID() {
          //create random id number between 0 and 10000
          const idNum = Math.floor(Math.random() * 1000);
          return idNum;
@@ -286,54 +283,80 @@ App.init();
 
 */
 
-const incomeBtn = document.querySelector("#add__income");
-const expenseBtn = document.querySelector("#add__expense");
-
-const inputForm = document.querySelector("#input__form");
-const type = document.querySelector(".select__type");
-const moneyAvailable = document.querySelector("#amount__available");
-const moneyIn = document.querySelector("#amount__in");
-const moneyOut = document.querySelector("#amount__out");
-const itemsContainer = document.querySelector("#items__container");
-
-const inputType = document.querySelector(".form__input--type");
-const inn = document.querySelector(".inputs__container--type");
-const radioButtons = document.querySelectorAll('input[name="category"]');
-
 class Item {
-    data = [];
+   data = [];
 
-    constructor(description, amount, category, date) {
-        this.description = description;
-        this.amount = amount;
-        this.category = category;
-        this.date = date;
-        this.getInputValues();
-        this.capitalize();
-        this.addDate();
-    }
+   constructor(description, amount, category, date) {
+      this.description = description;
+      this.amount = amount;
+      this.category = category;
+      this.date = date;
+      this.getInputValues();
+      this.capitalize();
+      this.addDate();
+   }
 
-    getInputValues() {
-        this.description = document.querySelector("#description").value;
-        this.amount = document.querySelector("#amount").value;
-        this.category = document.querySelector(
-            'input[name="category"]:checked'
-        ).value;
-    }
+   getInputValues() {
+      this.description = document.querySelector('#description').value;
+      this.amount = document.querySelector('#amount').value;
+      this.category = document.querySelector(
+         'input[name="category"]:checked'
+      ).value;
+   }
 
-    capitalize() {
-        this.category = this.category[0].toUpperCase() + this.category.slice(1);
-        return this.category;
-    }
+   capitalize() {
+      this.category = this.category[0].toUpperCase() + this.category.slice(1);
+      return this.category;
+   }
 
-    addDate() {
-        this.date = new Intl.DateTimeFormat("pt-PT").format(this.date);
-    }
+   addDate() {
+      this.date = new Intl.DateTimeFormat('pt-PT').format(this.date);
+   }
 }
 
-class UI {
-    displayMovement(mov) {
-        const html = `<div class="movements__row">
+const incomeBtn = document.querySelector('#add__income');
+const expenseBtn = document.querySelector('#add__expense');
+
+const inputForm = document.querySelector('#input__form');
+const type = document.querySelector('.select__type');
+const moneyAvailable = document.querySelector('#amount__available');
+const moneyIn = document.querySelector('#amount__in');
+const moneyOut = document.querySelector('#amount__out');
+const itemsContainer = document.querySelector('#items__container');
+
+const inputType = document.querySelector('.form__input--type');
+const inn = document.querySelector('.inputs__container--type');
+const radioButtons = document.querySelectorAll('input[name="category"]');
+
+class App {
+   constructor() {
+      incomeBtn.addEventListener('click', this.newItem.bind(this));
+   }
+
+   newItem(e) {
+      e.preventDefault();
+
+      const movement = new Item();
+      console.log(movement);
+
+      //Instantiate UI
+      const ui = new UI();
+
+      //Validate
+      if (description === '' || amount === '') {
+         // Error alert
+
+         alert('Please fill in all fields');
+      } else {
+         // Add Movement to list
+         ui.displayMovement(movement);
+         movement.data.push(movement);
+         console.log(movement.data);
+      }
+   }
+
+   displayMovement(mov) {
+      const html = `<div class="movements__row">
                   <span class="fa-solid fa-house card__icon"></span>
                   <span class="movements__row--description">
                      <label class="movements__row__description--name"
@@ -347,52 +370,22 @@ class UI {
                   <div class="movements__value">${mov.amount}€</div>
                </div>`;
 
-        itemsContainer.insertAdjacentHTML("afterbegin", html);
-    }
-
-    // formatMovementDate = function (date, locale) {
-    //    const calcDaysPassed = (date1, date2) =>
-    //       Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
-
-    //    const daysPassed = calcDaysPassed(new Date(), date);
-
-    //    if (daysPassed === 0) return 'Today';
-    //    if (daysPassed === 1) return 'Yesterday';
-    //    if (daysPassed <= 7) return `${daysPassed} days ago`;
-    //    else {
-    //       return new Intl.DateTimeFormat(locale).format(date);
-    //    }
-    // };
+      itemsContainer.insertAdjacentHTML('afterbegin', html);
+   }
 }
+// formatMovementDate = function (date, locale) {
+//    const calcDaysPassed = (date1, date2) =>
+//       Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
-incomeBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    //Get form values
-    //  const description = document.querySelector("#description").value;
-    //  const amount = document.querySelector("#amount").value;
-    //  const category = document.querySelector(
-    //      'input[name="category"]:checked'
-    //  ).value;
+//    const daysPassed = calcDaysPassed(new Date(), date);
 
-    //Instantiate movement
-    const movement = new Item();
-    console.log(movement);
-
-    //Instantiate UI
-    const ui = new UI();
-
-    //Validate
-    if (description === "" || amount === "") {
-        // Error alert
-
-        alert("Please fill in all fields");
-    } else {
-        // Add Movement to list
-        ui.displayMovement(movement);
-        movement.data.push(movement);
-        console.log(movement.data);
-    }
-});
+//    if (daysPassed === 0) return 'Today';
+//    if (daysPassed === 1) return 'Yesterday';
+//    if (daysPassed <= 7) return `${daysPassed} days ago`;
+//    else {
+//       return new Intl.DateTimeFormat(locale).format(date);
+//    }
+// };
 
 // TO DO:
 // *Add 'movement' to 'data' array. (movement is an object, so should it be converted?)
