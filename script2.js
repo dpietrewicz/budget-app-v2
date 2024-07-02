@@ -16,6 +16,8 @@ const radioButtons = document.querySelectorAll('input[name="category"]');
 
 // ITEM CONTROLLER
 class Item {
+   items = [];
+
    constructor(description, amount, category) {
       this.description = description;
       this.amount = amount;
@@ -23,47 +25,70 @@ class Item {
    }
 
    //data structure
-   items = [];
 
-   addMoney(description, amount) {
+   static addMoney(description, amount) {
       //create new item
-      newMoney = new Item(description, amount);
+      let newMoney = new Item(description, amount);
+      console.log(newMoney);
       // push it into the array
-      items.push(newMoney);
+      // this.items.push(newMoney);
    }
 }
 
 // UI CONTROLLER
-class UI {
+class App {
    constructor() {
-      incomeBtn.addEventListener('click', this.getDescription());
+      incomeBtn.addEventListener('click', this.addIncome.bind(this));
    }
 
-   displayMovement(mov) {
+   getDescription() {
+      return {
+         descriptionInput: document.querySelector('#description').value,
+         amountInput: document.querySelector('#amount').value,
+      };
+   }
+
+   getAmount() {
+      return {
+         amountInput: document.querySelector('#amount').value,
+      };
+   }
+
+   addIncomeItem(item) {
       const html = `<div class="movements__row">
                <span class="fa-solid fa-house card__icon"></span>
                <span class="movements__row--description">
                   <label class="movements__row__description--name"
-                     >${mov.description}</label
+                     >${item.description}</label
                   >
                   <div class="movements__row__description--type">
-                     ${mov.category}
+                     ${item.category}
                   </div>
                </span>
-               <div class="movements__date">${mov.date}</div>
-               <div class="movements__value">${mov.amount}€</div>
+               <div class="movements__date">${item.date}</div>
+               <div class="movements__value">${item.amount}€</div>
             </div>`;
 
       itemsContainer.insertAdjacentHTML('afterbegin', html);
    }
 
-   getInputs(e) {
-      const description = document.querySelector('#description').value;
-      const amount = document.querySelector('#amount').value;
-
-      console.log(description, amount);
+   addIncome(e) {
       e.preventDefault();
+      const description = this.getDescription();
+      const amount = this.getAmount();
+      console.log(description);
+
+      if (description.descriptionInput !== '' && amount.amountInput !== '') {
+         const newMoney = Item.addMoney(
+            description.descriptionInput,
+            amount.amountInput
+         );
+         console.log(newMoney); // undefined -> fix it
+         // this.addIncomeItem(newMoney);
+      } else {
+         console.log('failed');
+      }
    }
 }
 
-const mov1 = new UI();
+const app = new App();
