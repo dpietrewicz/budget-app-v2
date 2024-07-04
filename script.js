@@ -433,3 +433,62 @@ class App {
 // }
 
 // const app = new App();
+
+// _______________________________________________________________
+
+// UI CONTROLLER
+// class App {
+//    constructor() {
+//       incomeBtn.addEventListener('click', this.addIncome.bind(this));
+//    }
+
+//    getDescription() {
+//       return {
+//          descriptionInput: document.querySelector('#description').value,
+//       };
+//    }
+
+//    getAmount() {
+//       return {
+//          amountInput: document.querySelector('#amount').value,
+//       };
+//    }
+
+//    addIncomeItem(item) {
+//       const html = `<div class="movements__row">
+//                <span class="fa-solid fa-house card__icon"></span>
+//                <span class="movements__row--description">
+//                   <label class="movements__row__description--name"
+//                      >${item.description}</label
+//                   >
+//                   <div class="movements__row__description--type">
+//                      ${item.category}
+//                   </div>
+//                </span>
+//                <div class="movements__date">${item.date}</div>
+//                <div class="movements__value">${item.amount}€</div>
+//             </div>`;
+
+//       itemsContainer.insertAdjacentHTML('afterbegin', html);
+//    }
+
+//    addIncome(e) {
+//       const description = this.getDescription();
+//       const amount = this.getAmount();
+//       console.log(description);
+
+//       const newA = new Item(description.descriptionInput, amount.amountInput);
+//       console.log(newA);
+
+//       // if (description.descriptionInput !== '' && amount.amountInput !== '') {
+//       //    const newMoney = Item.addMoney('apple', 22);
+//       //    console.log(newMoney); // undefined -> fix it
+//       //    // this.addIncomeItem(newMoney);
+//       // } else {
+//       //    console.log('failed');
+//       // }
+//       e.preventDefault();
+//    }
+// }
+
+// const app = new App();
