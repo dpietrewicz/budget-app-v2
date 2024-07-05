@@ -23,9 +23,12 @@ incomeBtn.addEventListener('click', function (e) {
 
    const newIncome = new Item();
    incomes = [...incomes, newIncome];
-   UI.displayData();
 
-   console.log(newIncome);
+   const aaa = new UI();
+
+   console.log(incomes);
+
+   // newIncome.clearInputs();
 });
 
 // ITEM CONTROLLER
@@ -62,10 +65,23 @@ class Item {
    addDate() {
       this.date = new Intl.DateTimeFormat('pt-PT').format(this.date);
    }
+
+   clearInputs() {
+      this.description = document.querySelector('#description').value = '';
+      this.amount = document.querySelector('#amount').value = '';
+      this.category = document.querySelector(
+         'input[name="category"]:checked'
+      ).checked = false;
+   }
 }
 
 class UI {
-   static displayData() {
+   constructor() {
+      this.displayData();
+      this.updateIn();
+   }
+
+   displayData() {
       incomes.forEach(function (item, i) {
          const html = `<div class="movements__row">
                      <span class="fa-solid fa-house card__icon"></span>
@@ -78,27 +94,40 @@ class UI {
                         </div>
                      </span>
                      <div class="movements__date">${item.date}</div>
-                     <div class="movements__value">${item.amount}€</div>
+                     <div class="movements__value">${item.amount}</div>
+                     <p class="symbol">€</p>
                   </div>`;
 
          itemsContainer.insertAdjacentHTML('afterbegin', html);
       });
-
-      //       let displayData = incomes.map((item) => {
-      //          return `<div class="movements__row">
-      // //                <span class="fa-solid fa-house card__icon"></span>
-      // //                <span class="movements__row--description">
-      // //                   <label class="movements__row__description--name"
-      // //                      >${item.description}</label
-      // //                   >
-      // //                   <div class="movements__row__description--type">
-      // //                      ${item.category}
-      // //                   </div>
-      // //                </span>
-      // //                <div class="movements__date">${item.date}</div>
-      // //                <div class="movements__value">${item.amount}€</div>
-      // //             </div>`;
-      //       });
-      //       itemsContainer.innerHTML = displayData.join(' ');
    }
+
+   updateIn() {
+      const allIncome = document.querySelectorAll('.movements__value');
+      const incomeCount = [...allIncome].map((item) => +item.innerHTML);
+      const incomeSum = incomeCount.reduce(function (a, b) {
+         return a + b;
+      }, 0);
+      console.log(incomeSum);
+
+      const displayIn = (document.querySelector('#amount__in').innerHTML =
+         incomeSum.toFixed(2));
+   }
+
+   //       let displayData = incomes.map((item) => {
+   //          return `<div class="movements__row">
+   // //                <span class="fa-solid fa-house card__icon"></span>
+   // //                <span class="movements__row--description">
+   // //                   <label class="movements__row__description--name"
+   // //                      >${item.description}</label
+   // //                   >
+   // //                   <div class="movements__row__description--type">
+   // //                      ${item.category}
+   // //                   </div>
+   // //                </span>
+   // //                <div class="movements__date">${item.date}</div>
+   // //                <div class="movements__value">${item.amount}€</div>
+   // //             </div>`;
+   //       });
+   //       itemsContainer.innerHTML = displayData.join(' ');
 }
