@@ -1,5 +1,17 @@
 'use strict';
 
+const account = {
+   id: [111, 222, 333],
+   description: ['apple', 'orange', 'watermelon'],
+   amount: [1, 2, 3],
+   category: ['Groceries', 'Transportation', 'Housing'],
+   date: [
+      '2019-11-01T13:15:33.035Z',
+      '2019-11-30T09:48:16.867Z',
+      '2019-12-25T06:04:23.907Z',
+   ],
+};
+
 const incomeBtn = document.querySelector('#add__income');
 const expenseBtn = document.querySelector('#add__expense');
 
@@ -22,12 +34,20 @@ incomeBtn.addEventListener('click', function (e) {
    e.preventDefault();
 
    const newIncome = new Item();
-   incomes = [...incomes, newIncome];
+   // account = [...account, newIncome];
 
    const aaa = new UI();
+   aaa.displayData(account);
 
-   console.log(incomes);
+   console.log(account);
 
+   // const desc = document.querySelector('#description').value;
+   // console.log(desc);
+   // account.description.push(desc);
+   // console.log(account);
+
+   // const newArr = account.amount.map((item) => item);
+   // console.log(newArr);
    // newIncome.clearInputs();
 });
 
@@ -43,6 +63,7 @@ class Item {
       this.getInputValues();
       this.capitalize();
       this.addDate();
+      this.addValues();
    }
 
    createId() {
@@ -63,7 +84,16 @@ class Item {
    }
 
    addDate() {
-      this.date = new Intl.DateTimeFormat('pt-PT').format(this.date);
+      // this.date = new Intl.DateTimeFormat('pt-PT').format(this.date);
+      this.date = new Date().toISOString();
+   }
+
+   addValues() {
+      account.id.push(this.id);
+      account.description.push(this.description);
+      account.amount.push(+this.amount);
+      account.category.push(this.category);
+      account.date.push(this.date);
    }
 
    clearInputs() {
@@ -77,24 +107,24 @@ class Item {
 
 class UI {
    constructor() {
-      this.displayData();
+      // this.displayData();
       this.updateIn();
    }
 
    displayData() {
-      incomes.forEach(function (item, i) {
+      account.forEach(function (acc, i) {
          const html = `<div class="movements__row">
                      <span class="fa-solid fa-house card__icon"></span>
                      <span class="movements__row--description">
                         <label class="movements__row__description--name"
-                           >${item.description}</label
+                           >${acc.description}</label
                         >
                         <div class="movements__row__description--type">
-                           ${item.category}
+                           ${acc.category}
                         </div>
                      </span>
-                     <div class="movements__date">${item.date}</div>
-                     <div class="movements__value">${item.amount}</div>
+                     <div class="movements__date">${acc.date}</div>
+                     <div class="movements__value">${acc.amount}</div>
                      <p class="symbol">€</p>
                   </div>`;
 
@@ -108,7 +138,6 @@ class UI {
       const incomeSum = incomeCount.reduce(function (a, b) {
          return a + b;
       }, 0);
-      console.log(incomeSum);
 
       const displayIn = (document.querySelector('#amount__in').innerHTML =
          incomeSum.toFixed(2));

@@ -149,7 +149,6 @@ body {
    flex-direction: column;
    justify-content: space-between;
    width: auto;
-   /* overflow: scroll; */
 }
 
 .movements__summary {
@@ -328,6 +327,7 @@ input[type='radio']:checked::before {
    height: 40rem;
    margin: 0 1.2rem;
    border-bottom: 1px solid #ccc;
+   overflow-y: scroll;
 }
 
 .movements__row {
