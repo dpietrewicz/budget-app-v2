@@ -113,20 +113,22 @@ class UI {
 
    displayData() {
       account.forEach(function (acc, i) {
+         const description = acc.description[i];
+
          const html = `<div class="movements__row">
                      <span class="fa-solid fa-house card__icon"></span>
                      <span class="movements__row--description">
                         <label class="movements__row__description--name"
-                           >${acc.description}</label
+                           >${description}</label
                         >
                         <div class="movements__row__description--type">
-                           ${acc.category}
+                           
                         </div>
                      </span>
-                     <div class="movements__date">${acc.date}</div>
-                     <div class="movements__value">${acc.amount}</div>
+                     <div class="movements__date"></div>
+                     <div class="movements__value"></div>
                      <p class="symbol">€</p>
-                  </div>`;
+                      </div>`;
 
          itemsContainer.insertAdjacentHTML('afterbegin', html);
       });
@@ -159,4 +161,43 @@ class UI {
    // //             </div>`;
    //       });
    //       itemsContainer.innerHTML = displayData.join(' ');
+}
+
+const arr1 = [...account.description];
+// console.log(arr1);
+arr1.forEach(function (item, i) {
+   const html = `<div class="movements__row">
+               <span class="fa-solid fa-house card__icon"></span>
+               <span class="movements__row--description">
+                  <label class="movements__row__description--name"
+                     >${item}</label
+                  >
+                  <div class="movements__row__description--type">
+
+                  </div>
+               </span>
+               <div class="movements__date"></div>
+               <div class="movements__value"></div>
+               <p class="symbol">€</p>
+                </div>`;
+
+   itemsContainer.insertAdjacentHTML('afterbegin', html);
+});
+
+[...account.description].forEach(function (child) {
+   // console.log(child);
+});
+
+Array.from(account).forEach((item) => console.log(item));
+
+const arr3 = Object.keys(account).map(function (key) {
+   return account[key];
+});
+console.log(arr3);
+
+const arr4 = Object.entries(account);
+// console.log(arr4);
+
+for (let el in account) {
+   console.log(`On ${el}, it's ${account[el]}!`);
 }
