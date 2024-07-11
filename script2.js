@@ -28,18 +28,35 @@ const itemsContainer = document.querySelector('#items__container');
 const inputType = document.querySelector('.form__input--type');
 const inn = document.querySelector('.inputs__container--type');
 
-let incomes = [];
+let incomes = [
+   {
+      id: 3600,
+      description: 'water',
+      amount: '5',
+      category: 'Groceries',
+      date: '11/07/2024',
+   },
+   {
+      id: 3300,
+      description: 'rent',
+      amount: '1000',
+      category: 'Housing',
+      date: '21/07/2024',
+   },
+];
+
+// let housing = [];
 
 incomeBtn.addEventListener('click', function (e) {
    e.preventDefault();
 
    const newIncome = new Item();
-   // account = [...account, newIncome];
 
-   const aaa = new UI();
-   aaa.displayData(account);
+   incomes = [...incomes, newIncome];
 
-   console.log(account);
+   const ui = new UI();
+
+   console.log(incomes);
 
    // const desc = document.querySelector('#description').value;
    // console.log(desc);
@@ -63,7 +80,7 @@ class Item {
       this.getInputValues();
       this.capitalize();
       this.addDate();
-      this.addValues();
+      // this.addValues();
    }
 
    createId() {
@@ -84,17 +101,17 @@ class Item {
    }
 
    addDate() {
-      // this.date = new Intl.DateTimeFormat('pt-PT').format(this.date);
-      this.date = new Date().toISOString();
+      this.date = new Intl.DateTimeFormat('pt-PT').format(this.date);
+      // this.date = new Date().toISOString();
    }
 
-   addValues() {
-      account.id.push(this.id);
-      account.description.push(this.description);
-      account.amount.push(+this.amount);
-      account.category.push(this.category);
-      account.date.push(this.date);
-   }
+   // addValues() {
+   //    incomes.id.push(this.id);
+   //    incomes.description.push(this.description);
+   //    incomes.amount.push(+this.amount);
+   //    incomes.category.push(this.category);
+   //    incomes.date.push(this.date);
+   // }
 
    clearInputs() {
       this.description = document.querySelector('#description').value = '';
@@ -107,26 +124,27 @@ class Item {
 
 class UI {
    constructor() {
-      // this.displayData();
+      this.displayData();
       this.updateIn();
+      this.updateBudgets('Groceries');
+      this.updateBudgets('Housing');
    }
 
    displayData() {
-      account.forEach(function (acc, i) {
-         const description = acc.description[i];
-
+      incomes.forEach((item) => {
+         console.log(item.category);
          const html = `<div class="movements__row">
                      <span class="fa-solid fa-house card__icon"></span>
                      <span class="movements__row--description">
                         <label class="movements__row__description--name"
-                           >${description}</label
+                           >${item.description}</label
                         >
                         <div class="movements__row__description--type">
-                           
+                           ${item.category}
                         </div>
                      </span>
-                     <div class="movements__date"></div>
-                     <div class="movements__value"></div>
+                     <div class="movements__date">${item.date}</div>
+                     <div class="movements__value">${item.amount}</div>
                      <p class="symbol">€</p>
                       </div>`;
 
@@ -135,8 +153,9 @@ class UI {
    }
 
    updateIn() {
-      const allIncome = document.querySelectorAll('.movements__value');
-      const incomeCount = [...allIncome].map((item) => +item.innerHTML);
+      // const allIncome = document.querySelectorAll('.movements__value');
+      const incomeCount = incomes.map((item) => +item.amount);
+      console.log(incomeCount);
       const incomeSum = incomeCount.reduce(function (a, b) {
          return a + b;
       }, 0);
@@ -145,59 +164,35 @@ class UI {
          incomeSum.toFixed(2));
    }
 
-   //       let displayData = incomes.map((item) => {
-   //          return `<div class="movements__row">
-   // //                <span class="fa-solid fa-house card__icon"></span>
-   // //                <span class="movements__row--description">
-   // //                   <label class="movements__row__description--name"
-   // //                      >${item.description}</label
-   // //                   >
-   // //                   <div class="movements__row__description--type">
-   // //                      ${item.category}
-   // //                   </div>
-   // //                </span>
-   // //                <div class="movements__date">${item.date}</div>
-   // //                <div class="movements__value">${item.amount}€</div>
-   // //             </div>`;
-   //       });
-   //       itemsContainer.innerHTML = displayData.join(' ');
+   updateBudgets(cat) {
+      console.log(`Hello '${cat}'`);
+      const filterCat = incomes.filter((item) => item.category === `${cat}`);
+      const catCount = filterCat.map((item) => +item.amount);
+      const catSum = catCount.reduce((a, b) => a + b, 0);
+
+      const lower = cat.toLowerCase();
+      const displayCat = (document.querySelector(`#${lower}`).innerHTML =
+         catSum.toFixed(2));
+      console.log(filterCat);
+      console.log(catCount);
+   }
 }
 
-const arr1 = [...account.description];
-// console.log(arr1);
-arr1.forEach(function (item, i) {
-   const html = `<div class="movements__row">
-               <span class="fa-solid fa-house card__icon"></span>
-               <span class="movements__row--description">
-                  <label class="movements__row__description--name"
-                     >${item}</label
-                  >
-                  <div class="movements__row__description--type">
+const app = new UI();
+// [...account.description].forEach(function (child) {
+//    // console.log(child);
+// });
 
-                  </div>
-               </span>
-               <div class="movements__date"></div>
-               <div class="movements__value"></div>
-               <p class="symbol">€</p>
-                </div>`;
+// Array.from(account).forEach((item) => console.log(item));
 
-   itemsContainer.insertAdjacentHTML('afterbegin', html);
-});
+// const arr3 = Object.keys(account).map(function (key) {
+//    return account[key];
+// });
+// console.log(arr3);
 
-[...account.description].forEach(function (child) {
-   // console.log(child);
-});
+// const arr4 = Object.entries(account);
+// // console.log(arr4);
 
-Array.from(account).forEach((item) => console.log(item));
-
-const arr3 = Object.keys(account).map(function (key) {
-   return account[key];
-});
-console.log(arr3);
-
-const arr4 = Object.entries(account);
-// console.log(arr4);
-
-for (let el in account) {
-   console.log(`On ${el}, it's ${account[el]}!`);
-}
+// for (let el in account) {
+//    console.log(`On ${el}, it's ${account[el]}!`);
+// }
