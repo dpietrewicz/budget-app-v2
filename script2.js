@@ -19,13 +19,23 @@ const inn = document.querySelector('.inputs__container--type');
 let incomes = [
    {
       id: 3600,
-      description: 'water',
-      amount: '5',
+      description: 'selling',
+      amount: '500',
       category: 'Groceries',
       date: '11/07/2024',
    },
    {
       id: 3300,
+      description: 'salary',
+      amount: '10000',
+      category: 'Housing',
+      date: '21/07/2024',
+   },
+];
+
+let expenses = [
+   {
+      id: 4300,
       description: 'rent',
       amount: '1000',
       category: 'Housing',
@@ -39,10 +49,29 @@ incomeBtn.addEventListener('click', function (e) {
    const newIncome = new Item();
 
    incomes = [...incomes, newIncome];
+   console.log(incomes);
 
    itemsContainer.innerHTML = '';
 
    const ui = new UI();
+   // ui.displayData(transactions);
+
+   Item.clearInputs();
+});
+
+expenseBtn.addEventListener('click', function (e) {
+   e.preventDefault();
+
+   const newExpense = new Item();
+
+   expenses = [...expenses, newExpense];
+
+   itemsContainer.innerHTML = '';
+
+   const ui = new UI();
+   // ui.displayData(transactions);
+
+   Item.clearInputs();
 });
 
 // ITEM CONTROLLER
@@ -53,22 +82,30 @@ class Item {
       this.amount = amount;
       this.category = category;
       this.date = date;
-      this.createId();
-      this.getInputValues();
-      this.capitalize();
-      this.addDate();
+      this.validateInputValues();
+   }
+
+   validateInputValues() {
+      if (description.value && amount.value !== '') {
+         this.getInputValues();
+         this.createId();
+         this.capitalize();
+         this.addDate();
+      } else {
+         return alert('Please fill in values');
+      }
+   }
+
+   getInputValues() {
+      this.description = description.value;
+      this.amount = amount.value;
+      this.category = document.querySelector(
+         'input[name="category"]:checked'
+      ).value;
    }
 
    createId() {
       this.id = Math.floor(Math.random() * 10000);
-   }
-
-   getInputValues() {
-      this.description = document.querySelector('#description').value;
-      this.amount = document.querySelector('#amount').value;
-      this.category = document.querySelector(
-         'input[name="category"]:checked'
-      ).value;
    }
 
    capitalize() {
@@ -81,12 +118,12 @@ class Item {
       // this.date = new Date().toISOString();
    }
 
-   clearInputs() {
+   static clearInputs() {
       this.description = document.querySelector('#description').value = '';
       this.amount = document.querySelector('#amount').value = '';
-      this.category = document.querySelector(
-         'input[name="category"]:checked'
-      ).checked = false;
+      // this.category = document.querySelector(
+      //    'input[name="category"]:checked'
+      // ).checked = false;
    }
 }
 
@@ -101,8 +138,8 @@ class UI {
    }
 
    displayData() {
-      incomes.forEach((item) => {
-         console.log(item.category);
+      const transactions = [...incomes, ...expenses];
+      transactions.forEach((item) => {
          const html = `<div class="movements__row">
                      <span class="fa-solid fa-house card__icon"></span>
                      <span class="movements__row--description">
@@ -125,7 +162,6 @@ class UI {
    updateIn() {
       // const allIncome = document.querySelectorAll('.movements__value');
       const incomeCount = incomes.map((item) => +item.amount);
-      console.log(incomeCount);
       const incomeSum = incomeCount.reduce(function (a, b) {
          return a + b;
       }, 0);
@@ -146,3 +182,4 @@ class UI {
 }
 
 const app = new UI();
+// app.displayData(transactions);
