@@ -46,10 +46,10 @@ let expenses = [
 incomeBtn.addEventListener('click', function (e) {
    e.preventDefault();
 
+   Item.transactionType();
    const newIncome = new Item();
 
    incomes = [...incomes, newIncome];
-   console.log(incomes);
 
    itemsContainer.innerHTML = '';
 
@@ -63,6 +63,7 @@ expenseBtn.addEventListener('click', function (e) {
    e.preventDefault();
 
    const newExpense = new Item();
+   Item.transactionType('expense');
 
    expenses = [...expenses, newExpense];
 
@@ -76,12 +77,13 @@ expenseBtn.addEventListener('click', function (e) {
 
 // ITEM CONTROLLER
 class Item {
-   constructor(id, description, amount, category, date) {
+   constructor(id, description, amount, category, date, type) {
       this.id = id;
       this.description = description;
       this.amount = amount;
       this.category = category;
       this.date = date;
+      this.type = type;
       this.validateInputValues();
    }
 
@@ -118,6 +120,11 @@ class Item {
       // this.date = new Date().toISOString();
    }
 
+   static transactionType() {
+      this.type = 'income';
+      console.log(type);
+   }
+
    static clearInputs() {
       this.description = document.querySelector('#description').value = '';
       this.amount = document.querySelector('#amount').value = '';
@@ -131,6 +138,7 @@ class UI {
    constructor() {
       this.displayData();
       this.updateIn();
+      this.updateOut();
       this.updateBudgets('Transportation');
       this.updateBudgets('Housing');
       this.updateBudgets('Groceries');
@@ -139,6 +147,7 @@ class UI {
 
    displayData() {
       const transactions = [...incomes, ...expenses];
+      console.log(transactions);
       transactions.forEach((item) => {
          const html = `<div class="movements__row">
                      <span class="fa-solid fa-house card__icon"></span>
@@ -159,6 +168,7 @@ class UI {
       });
    }
 
+   // In sum of last transactions
    updateIn() {
       // const allIncome = document.querySelectorAll('.movements__value');
       const incomeCount = incomes.map((item) => +item.amount);
@@ -166,10 +176,21 @@ class UI {
          return a + b;
       }, 0);
 
-      const displayIn = (document.querySelector('#amount__in').innerHTML =
-         incomeSum.toFixed(2));
+      moneyIn.innerHTML = incomeSum.toFixed(2);
    }
 
+   // Out sum of last transactions
+   updateOut() {
+      // const allIncome = document.querySelectorAll('.movements__value');
+      const expensesCount = expenses.map((item) => +item.amount);
+      const expensesSum = expensesCount.reduce(function (a, b) {
+         return a + b;
+      }, 0);
+
+      moneyOut.innerHTML = expensesSum.toFixed(2);
+   }
+
+   // Cards update
    updateBudgets(cat) {
       const filterCat = incomes.filter((item) => item.category === `${cat}`);
       const catCount = filterCat.map((item) => +item.amount);
