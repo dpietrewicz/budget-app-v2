@@ -5,6 +5,7 @@
 
 const incomeBtn = document.querySelector('#add__income');
 const expenseBtn = document.querySelector('#add__expense');
+const sortBtn = document.querySelector('#sort__btn');
 
 const description = document.querySelector('#description');
 const amount = document.querySelector('#amount');
@@ -24,7 +25,7 @@ let incomes = [
    {
       id: 3600,
       description: 'selling',
-      amount: '1000',
+      amount: '300',
       category: 'Groceries',
       date: '11/07/2024',
    },
@@ -61,7 +62,7 @@ incomeBtn.addEventListener('click', function (e) {
    // ui.displayData(transactions);
 
    Item.clearInputs();
-   console.log(incomes);
+   // console.log(incomes);
 });
 
 expenseBtn.addEventListener('click', function (e) {
@@ -78,7 +79,13 @@ expenseBtn.addEventListener('click', function (e) {
    // ui.displayData(transactions);
 
    Item.clearInputs();
-   console.log(expenses);
+   // console.log(expenses);
+});
+
+sortBtn.addEventListener('click', function (e) {
+   e.preventDefault(e);
+
+   UI.sortData();
 });
 
 // ITEM CONTROLLER
@@ -144,10 +151,12 @@ class UI {
       this.updateBudgets('Groceries');
       this.updateBudgets('Entertainment');
       this.updateBalance();
-      this.sortData();
+      // this.sortData();
    }
 
    displayData() {
+      itemsContainer.innerHTML = '';
+
       const transactions = [...incomes, ...expenses];
       console.log(transactions);
       transactions.forEach((item) => {
@@ -170,16 +179,15 @@ class UI {
       });
    }
 
-   sortData() {
+   static sortData() {
       const transactions = [...incomes, ...expenses];
-      const amountArr = transactions.map((item) => +item.amount);
-      console.log(amountArr);
+      // const amountArr = transactions.map((item) => +item.amount);
+      // console.log(amountArr);
 
-      amountArr.sort((a, b) => {
-         if (a > b) return 1;
-         if (a < b) return -1;
+      const byAmount = transactions.sort((a, b) => {
+         return a.amount - b.amount;
       });
-      console.log(amountArr);
+      console.log(byAmount);
    }
 
    formatCur(value) {
