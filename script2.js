@@ -28,6 +28,7 @@ let incomes = [
       amount: '300',
       category: 'Groceries',
       date: '11/07/2024',
+      type: 'income',
    },
    {
       id: 3300,
@@ -35,6 +36,7 @@ let incomes = [
       amount: '1000',
       category: 'Housing',
       date: '21/07/2024',
+      type: 'income',
    },
 ];
 
@@ -45,6 +47,7 @@ let expenses = [
       amount: '800',
       category: 'Housing',
       date: '21/07/2024',
+      type: 'expense',
    },
 ];
 
@@ -119,7 +122,8 @@ class Item {
    }
 
    createId() {
-      this.id = Math.floor(Math.random() * 10000);
+      // this.id = Math.floor(Math.random() * 10000);
+      this.id = (Date.now() + '').slice(-10);
    }
 
    capitalize() {
@@ -158,7 +162,12 @@ class UI {
       itemsContainer.innerHTML = '';
 
       const transactions = [...incomes, ...expenses];
+      const tsort = transactions.sort((a, b) => {
+         return a.amount - b.amount;
+      });
+
       console.log(transactions);
+      console.log(tsort);
       transactions.forEach((item) => {
          const formattedMov = this.formatCur(item.amount);
          const html = `<div class="movements__row">
@@ -172,7 +181,7 @@ class UI {
                         </div>
                      </span>
                      <div class="movements__date">${item.date}</div>
-                     <div class="movements__value">${formattedMov}</div>
+                     <div class="movements__value movements__type--${item.type}">${formattedMov}</div>
                       </div>`;
 
          itemsContainer.insertAdjacentHTML('afterbegin', html);
