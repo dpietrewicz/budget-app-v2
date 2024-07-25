@@ -23,7 +23,7 @@ const inn = document.querySelector('.inputs__container--type');
 
 let incomes = [
    {
-      id: 3600,
+      id: 1900874625,
       description: 'selling',
       amount: '300',
       category: 'Groceries',
@@ -31,18 +31,26 @@ let incomes = [
       type: 'income',
    },
    {
-      id: 3300,
+      id: 1901087367,
       description: 'salary',
       amount: '1000',
       category: 'Housing',
       date: '21/07/2024',
       type: 'income',
    },
+   // {
+   //    id: 1901121733,
+   //    description: 'rent',
+   //    amount: '800',
+   //    category: 'Housing',
+   //    date: '21/07/2024',
+   //    type: 'expense',
+   // },
 ];
 
 let expenses = [
    {
-      id: 4300,
+      id: 1901121733,
       description: 'rent',
       amount: '800',
       category: 'Housing',
@@ -145,6 +153,8 @@ class Item {
    }
 }
 
+let sort = false;
+
 class UI {
    constructor() {
       this.displayData();
@@ -162,16 +172,17 @@ class UI {
       itemsContainer.innerHTML = '';
 
       const transactions = [...incomes, ...expenses];
-      const tsort = transactions.sort((a, b) => {
-         return a.amount - b.amount;
-      });
+      // const tsort = transactions.sort((a, b) => {
+      //    return a.type + b.type;
+      // });
 
-      console.log(transactions);
-      console.log(tsort);
+      // const movs = sort ? tsort : transactions;
+
       transactions.forEach((item) => {
+         const type = item.type === 'income' ? 'up' : 'down';
          const formattedMov = this.formatCur(item.amount);
          const html = `<div class="movements__row">
-                     <span class="fa-solid fa-house card__icon"></span>
+                     <span class="fa-solid fa-arrow-${type} card__icon"></span>
                      <span class="movements__row--description">
                         <label class="movements__row__description--name"
                            >${item.description}</label
@@ -181,7 +192,7 @@ class UI {
                         </div>
                      </span>
                      <div class="movements__date">${item.date}</div>
-                     <div class="movements__value movements__type--${item.type}">${formattedMov}</div>
+                     <div class="movements__value">${formattedMov}</div>
                       </div>`;
 
          itemsContainer.insertAdjacentHTML('afterbegin', html);
@@ -189,14 +200,7 @@ class UI {
    }
 
    static sortData() {
-      const transactions = [...incomes, ...expenses];
-      // const amountArr = transactions.map((item) => +item.amount);
-      // console.log(amountArr);
-
-      const byAmount = transactions.sort((a, b) => {
-         return a.amount - b.amount;
-      });
-      console.log(byAmount);
+      this.displayData(true);
    }
 
    formatCur(value) {
@@ -208,8 +212,9 @@ class UI {
 
    // In sum of last transactions
    updateIn() {
+      const incomeFilter = incomes.filter((item) => (item.type = 'income'));
       // const allIncome = document.querySelectorAll('.movements__value');
-      const incomeCount = incomes.map((item) => +item.amount);
+      const incomeCount = incomeFilter.map((item) => +item.amount);
       //   console.log(incomeCount);
       const incomeSum = incomeCount.reduce(function (a, b) {
          return a + b;
@@ -220,8 +225,9 @@ class UI {
 
    // Out sum of last transactions
    updateOut() {
+      const expenseFilter = expenses.filter((item) => item.type === 'expense');
       // const allIncome = document.querySelectorAll('.movements__value');
-      const expensesCount = expenses.map((item) => +item.amount);
+      const expensesCount = expenseFilter.map((item) => +item.amount);
       const expensesSum = expensesCount.reduce(function (a, b) {
          return a + b;
       }, 0);
