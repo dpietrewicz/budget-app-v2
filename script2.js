@@ -67,35 +67,53 @@ let expenses = [
 incomeBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    const newIncome = new Item();
-    newIncome.type = "income";
+    const radioButton = document.querySelector(
+        'input[name="category"]:checked'
+    );
 
-    incomes = [...incomes, newIncome];
+    console.log(radioButton);
 
-    itemsContainer.innerHTML = "";
+    if (description.value && amount.value !== "" && radioButton !== null) {
+        const newIncome = new Item();
+        newIncome.type = "income";
 
-    const ui = new UI();
-    // ui.displayData(transactions);
+        incomes = [...incomes, newIncome];
 
-    Item.clearInputs();
-    // console.log(incomes);
+        itemsContainer.innerHTML = "";
+
+        const ui = new UI();
+        // ui.displayData(transactions);
+
+        Item.clearInputs();
+        // console.log(incomes);
+    } else {
+        return alert("Please fill in values and select category");
+    }
 });
 
 expenseBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    const newExpense = new Item();
-    newExpense.type = "expense";
+    const radioButton = document.querySelector(
+        'input[name="category"]:checked'
+    );
 
-    expenses = [...expenses, newExpense];
+    if (description.value && amount.value !== "" && radioButton !== null) {
+        const newExpense = new Item();
+        newExpense.type = "expense";
 
-    itemsContainer.innerHTML = "";
+        expenses = [...expenses, newExpense];
 
-    const ui = new UI();
-    // ui.displayData(transactions);
+        itemsContainer.innerHTML = "";
 
-    Item.clearInputs();
-    // console.log(expenses);
+        const ui = new UI();
+        // ui.displayData(transactions);
+
+        Item.clearInputs();
+        // console.log(expenses);
+    } else {
+        return alert("Please fill in values and select category");
+    }
 });
 
 sortBtn.addEventListener("click", function (e) {
@@ -112,18 +130,14 @@ class Item {
         this.amount = amount;
         this.category = category;
         this.date = date;
-        this.validateInputValues();
+        this.addItem();
     }
 
-    validateInputValues() {
-        if (description.value && amount.value !== "") {
-            this.getInputValues();
-            this.createId();
-            this.capitalize();
-            this.addDate();
-        } else {
-            return alert("Please fill in values");
-        }
+    addItem() {
+        this.getInputValues();
+        this.createId();
+        this.capitalize();
+        this.addDate();
     }
 
     getInputValues() {
