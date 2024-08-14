@@ -1,7 +1,6 @@
 "use strict";
 
 // 1. Implement SORTING
-// 2. Add type of movement : income || expense
 
 const incomeBtn = document.querySelector("#add__income");
 const expenseBtn = document.querySelector("#add__expense");
@@ -21,7 +20,7 @@ const itemsContainer = document.querySelector("#items__container");
 const inputType = document.querySelector(".form__input--type");
 const inn = document.querySelector(".inputs__container--type");
 
-let incomes = [
+let data = [
     {
         id: 1900874625,
         description: "selling",
@@ -48,12 +47,7 @@ let incomes = [
     },
 ];
 
-let result = incomes.filter((a) => a.type === "income");
-let result2 = result.map((a) => +a.amount);
-
-console.log(result2);
-
-let expenses = [
+let expenses222 = [
     {
         id: 1901121733,
         description: "rent",
@@ -71,21 +65,17 @@ incomeBtn.addEventListener("click", function (e) {
         'input[name="category"]:checked'
     );
 
-    console.log(radioButton);
-
     if (description.value && amount.value !== "" && radioButton !== null) {
         const newIncome = new Item();
         newIncome.type = "income";
 
-        incomes = [...incomes, newIncome];
+        data = [...data, newIncome];
 
         itemsContainer.innerHTML = "";
 
         const ui = new UI();
-        // ui.displayData(transactions);
 
         Item.clearInputs();
-        // console.log(incomes);
     } else {
         return alert("Please fill in values and select category");
     }
@@ -102,15 +92,13 @@ expenseBtn.addEventListener("click", function (e) {
         const newExpense = new Item();
         newExpense.type = "expense";
 
-        expenses = [...expenses, newExpense];
+        data = [...data, newExpense];
 
         itemsContainer.innerHTML = "";
 
         const ui = new UI();
-        // ui.displayData(transactions);
 
         Item.clearInputs();
-        // console.log(expenses);
     } else {
         return alert("Please fill in values and select category");
     }
@@ -190,14 +178,14 @@ class UI {
     displayData() {
         itemsContainer.innerHTML = "";
 
-        const transactions = [...incomes, ...expenses];
+        // const transactions = [...incomes, ...expenses];
         // const tsort = transactions.sort((a, b) => {
         //    return a.type + b.type;
         // });
 
         // const movs = sort ? tsort : transactions;
 
-        transactions.forEach((item) => {
+        data.forEach((item) => {
             const type = item.type === "income" ? "up" : "down";
             const formattedMov = this.formatCur(item.amount);
             const html = `<div class="movements__row">
@@ -229,12 +217,23 @@ class UI {
         }).format(value);
     }
 
+    filterIncomes() {
+        const incomeFilter = data.filter((item) => item.type === "income");
+        return incomeFilter;
+        console.log(incomeFilter);
+    }
+
+    filterOutcomes() {
+        const expenseFilter = data.filter((item) => item.type === "expense");
+        return expenseFilter;
+    }
+
     // In sum of last transactions
     updateIn() {
-        const incomeFilter = incomes.filter((item) => (item.type = "income"));
-        // const allIncome = document.querySelectorAll('.movements__value');
-        const incomeCount = incomeFilter.map((item) => +item.amount);
-        //   console.log(incomeCount);
+        const incomes = this.filterIncomes();
+
+        const incomeCount = incomes.map((item) => +item.amount);
+
         const incomeSum = incomeCount.reduce(function (a, b) {
             return a + b;
         }, 0);
@@ -244,11 +243,10 @@ class UI {
 
     // Out sum of last transactions
     updateOut() {
-        const expenseFilter = expenses.filter(
-            (item) => item.type === "expense"
-        );
-        // const allIncome = document.querySelectorAll('.movements__value');
-        const expensesCount = expenseFilter.map((item) => +item.amount);
+        const expenses = this.filterOutcomes();
+
+        const expensesCount = expenses.map((item) => +item.amount);
+
         const expensesSum = expensesCount.reduce(function (a, b) {
             return a + b;
         }, 0);
@@ -258,10 +256,11 @@ class UI {
 
     // Cards update
     updateBudgets(cat) {
+        const incomes = this.filterIncomes();
         const filterIn = incomes.filter((item) => item.category === `${cat}`);
-        //   console.log(filterCat);
+
+        const expenses = this.filterOutcomes();
         const filterOut = expenses.filter((item) => item.category === `${cat}`);
-        //   console.log(filterCat2);
 
         const countIn = filterIn.map((item) => +item.amount);
         const countOut = filterOut.map((item) => +item.amount);
@@ -269,22 +268,21 @@ class UI {
         const sumIn = countIn.reduce((a, b) => a + b, 0);
         const sumOut = countOut.reduce((a, b) => a + b, 0);
 
-        //   console.log(catSum);
-        //   console.log(catSum2);
         const lowerCase = cat.toLowerCase();
 
         const total = sumIn - sumOut;
-        // console.log(total);
 
         const displayCat = (document.querySelector(`#${lowerCase}`).innerHTML =
             this.formatCur(total));
     }
 
     updateBalance() {
+        const incomes = this.filterIncomes();
         const sumIn = incomes
             .map((item) => +item.amount)
             .reduce((a, b) => a + b, 0);
 
+        const expenses = this.filterOutcomes();
         const sumOut = expenses
             .map((item) => +item.amount)
             .reduce((a, b) => a + b, 0);
