@@ -188,7 +188,7 @@ class UI {
         data.forEach((item) => {
             const type = item.type === "income" ? "up" : "down";
             const formattedMov = this.formatCur(item.amount);
-            const html = `<div class="movements__row">
+            const html = `<div class="movements__row item">
                      <span class="fa-solid fa-arrow-${type} card__icon"></span>
                      <span class="movements__row--description">
                         <label class="movements__row__description--name"
@@ -200,6 +200,7 @@ class UI {
                      </span>
                      <div class="movements__date">${item.date}</div>
                      <div class="movements__value">${formattedMov}</div>
+                     <i class="fa-regular fa-trash-can trash"></i>
                       </div>`;
 
             itemsContainer.insertAdjacentHTML("afterbegin", html);
