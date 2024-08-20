@@ -100,11 +100,23 @@ expenseBtn.addEventListener('click', function (e) {
    }
 });
 
-sortBtn.addEventListener('click', function (e) {
-   e.preventDefault(e);
+itemsContainer.addEventListener('click', function (e) {
+   if (e.target.classList.contains('trash')) {
+      console.log(e.target.parentElement);
 
-   UI.sortData();
+      const id = Item.getIdNumber(e.target);
+      console.log(id);
+      Item.deleteAmountArr(id);
+
+      const ui = new UI();
+   }
 });
+
+// sortBtn.addEventListener('click', function (e) {
+//    e.preventDefault(e);
+
+//    UI.sortData();
+// });
 
 // ITEM CONTROLLER
 class Item {
@@ -135,6 +147,19 @@ class Item {
    createId() {
       // this.id = Math.floor(Math.random() * 10000);
       this.id = (Date.now() + '').slice(-10);
+   }
+
+   static getIdNumber(item) {
+      const amountId = parseInt(item.parentElement.id);
+      return amountId;
+   }
+
+   static deleteAmountArr(id) {
+      const ids = data.map((item) => item.id);
+      console.log(ids);
+      const index = ids.indexOf(id);
+      console.log(index);
+      data.splice(index, 1);
    }
 
    capitalize() {
@@ -168,7 +193,7 @@ class UI {
       this.updateBudgets('Groceries');
       this.updateBudgets('Entertainment');
       this.updateBalance();
-      this.deleteItem();
+      // this.deleteItem();
       // this.sortData();
    }
 
@@ -185,7 +210,7 @@ class UI {
       data.forEach((item) => {
          const type = item.type === 'income' ? 'up' : 'down';
          const formattedMov = this.formatCur(item.amount);
-         const html = `<div class="movements__row item">
+         const html = `<div class="movements__row item" id="${item.id}">
                      <span class="fa-solid fa-arrow-${type} card__icon"></span>
                      <span class="movements__row--description">
                         <label class="movements__row__description--name"
@@ -204,24 +229,15 @@ class UI {
       });
    }
 
-   getIdNumber(item) {
-      const amountId = item.parentElement.id;
-      console.log(amountId);
-   }
-
-   deleteItem() {
-      const deleteBtn = document.querySelector('#delete__btn');
-      deleteBtn.addEventListener('click', function (e) {
-         console.log(e.target);
-         console.log('sss');
-         // this.getIdNumber(e.target);
-         console.log(e.parentElement);
-      });
-   }
-
-   static sortData() {
-      this.displayData(true);
-   }
+   // deleteItem() {
+   //    const deleteBtn = document.querySelector('#delete__btn');
+   //    deleteBtn.addEventListener('click', function (e) {
+   //       console.log(e.target);
+   //       console.log('sss');
+   //       // this.getIdNumber(e.target);
+   //       console.log(e.parentElement);
+   //    });
+   // }
 
    formatCur(value) {
       return new Intl.NumberFormat('en-us', {
