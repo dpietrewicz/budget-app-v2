@@ -406,6 +406,7 @@ input[type='radio']:checked::before {
    text-transform: uppercase;
    font-weight: 400;
    color: #666;
+   margin-left: 1rem;
 }
 
 .movements__value {
@@ -419,13 +420,13 @@ input[type='radio']:checked::before {
    background-color: var(--color-gray-light);
    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
    height: 3rem;
-   width: 3.3rem;
+   width: 3rem;
    font-size: 1.6rem;
    margin-left: 1rem;
    border-top-right-radius: 15px;
    border-bottom-right-radius: 15px;
    cursor: pointer;
-   transform: translateX(30px);
+   transform: translateX(15px);
    opacity: 0;
 
    display: flex;
@@ -441,7 +442,7 @@ input[type='radio']:checked::before {
 
 @keyframes showDelete {
    0% {
-      transform: translateX(30px);
+      transform: translateX(15px);
       opacity: 0;
    }
    100% {
