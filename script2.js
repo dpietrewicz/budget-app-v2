@@ -102,21 +102,23 @@ expenseBtn.addEventListener('click', function (e) {
 
 itemsContainer.addEventListener('click', function (e) {
    if (e.target.classList.contains('trash')) {
-      console.log(e.target.parentElement);
-
       const id = Item.getIdNumber(e.target);
-      console.log(id);
       Item.deleteAmountArr(id);
 
       const ui = new UI();
    }
 });
 
-// sortBtn.addEventListener('click', function (e) {
-//    e.preventDefault(e);
+let sorted = false;
 
-//    UI.sortData();
-// });
+sortBtn.addEventListener('click', function (e) {
+   e.preventDefault(e);
+
+   const ui = new UI();
+   ui.displayData(!sorted);
+   sorted = !sorted;
+   console.log(sorted);
+});
 
 // ITEM CONTROLLER
 class Item {
@@ -181,8 +183,6 @@ class Item {
    }
 }
 
-let sort = false;
-
 class UI {
    constructor() {
       this.displayData();
@@ -197,17 +197,19 @@ class UI {
       // this.sortData();
    }
 
-   displayData() {
+   displayData(sort = false) {
       itemsContainer.innerHTML = '';
 
-      // const transactions = [...incomes, ...expenses];
-      // const tsort = transactions.sort((a, b) => {
-      //    return a.type + b.type;
-      // });
+      const dataSort = sort
+         ? data.sort((a, b) => a.type.localeCompare(b.type))
+         : data;
+
+      console.log(data);
+      console.log(dataSort);
 
       // const movs = sort ? tsort : transactions;
 
-      data.forEach((item) => {
+      dataSort.forEach((item) => {
          const type = item.type === 'income' ? 'up' : 'down';
          const formattedMov = this.formatCur(item.amount);
          const html = `<div class="movements__row item" id="${item.id}">
@@ -229,16 +231,6 @@ class UI {
       });
    }
 
-   // deleteItem() {
-   //    const deleteBtn = document.querySelector('#delete__btn');
-   //    deleteBtn.addEventListener('click', function (e) {
-   //       console.log(e.target);
-   //       console.log('sss');
-   //       // this.getIdNumber(e.target);
-   //       console.log(e.parentElement);
-   //    });
-   // }
-
    formatCur(value) {
       return new Intl.NumberFormat('en-us', {
          style: 'currency',
@@ -249,7 +241,6 @@ class UI {
    filterIncomes() {
       const incomeFilter = data.filter((item) => item.type === 'income');
       return incomeFilter;
-      console.log(incomeFilter);
    }
 
    filterOutcomes() {
