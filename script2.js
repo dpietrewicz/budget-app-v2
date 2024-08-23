@@ -1,24 +1,16 @@
 'use strict';
 
-// 1. Implement SORTING
-
+const description = document.querySelector('#description');
+const amount = document.querySelector('#amount');
 const incomeBtn = document.querySelector('#add__income');
 const expenseBtn = document.querySelector('#add__expense');
 const sortBtn = document.querySelector('#sort__btn');
 
-const description = document.querySelector('#description');
-const amount = document.querySelector('#amount');
-
-const inputForm = document.querySelector('#input__form');
-const type = document.querySelector('.select__type');
-const moneyBalance = document.querySelector('#amount__balance');
-const dateBalance = document.querySelector('#date__balance');
+const itemsContainer = document.querySelector('#items__container');
 const moneyIn = document.querySelector('#amount__in');
 const moneyOut = document.querySelector('#amount__out');
-const itemsContainer = document.querySelector('#items__container');
-
-const inputType = document.querySelector('.form__input--type');
-const inn = document.querySelector('.inputs__container--type');
+const moneyBalance = document.querySelector('#amount__balance');
+const dateBalance = document.querySelector('#date__balance');
 
 let data = [
    {
@@ -37,17 +29,6 @@ let data = [
       date: '21/07/2024',
       type: 'income',
    },
-   {
-      id: 1901121733,
-      description: 'rent',
-      amount: '800',
-      category: 'Housing',
-      date: '21/07/2024',
-      type: 'expense',
-   },
-];
-
-let expenses222 = [
    {
       id: 1901121733,
       description: 'rent',
@@ -117,7 +98,6 @@ sortBtn.addEventListener('click', function (e) {
    const ui = new UI();
    ui.displayData(!sorted);
    sorted = !sorted;
-   console.log(sorted);
 });
 
 // ITEM CONTROLLER
@@ -147,7 +127,6 @@ class Item {
    }
 
    createId() {
-      // this.id = Math.floor(Math.random() * 10000);
       this.id = (Date.now() + '').slice(-10);
    }
 
@@ -171,15 +150,11 @@ class Item {
 
    addDate() {
       this.date = new Intl.DateTimeFormat('pt-PT').format(this.date);
-      // this.date = new Date().toISOString();
    }
 
    static clearInputs() {
       this.description = document.querySelector('#description').value = '';
       this.amount = document.querySelector('#amount').value = '';
-      // this.category = document.querySelector(
-      //    'input[name="category"]:checked'
-      // ).checked = false;
    }
 }
 
@@ -193,21 +168,14 @@ class UI {
       this.updateBudgets('Groceries');
       this.updateBudgets('Entertainment');
       this.updateBalance();
-      // this.deleteItem();
-      // this.sortData();
    }
 
    displayData(sort = false) {
       itemsContainer.innerHTML = '';
 
       const dataSort = sort
-         ? data.sort((a, b) => a.type.localeCompare(b.type))
+         ? data.slice().sort((a, b) => a.type.localeCompare(b.type))
          : data;
-
-      console.log(data);
-      console.log(dataSort);
-
-      // const movs = sort ? tsort : transactions;
 
       dataSort.forEach((item) => {
          const type = item.type === 'income' ? 'up' : 'down';
@@ -315,4 +283,3 @@ class UI {
 }
 
 const app = new UI();
-// app.displayData(transactions);
