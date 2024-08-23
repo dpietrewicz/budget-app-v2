@@ -18,18 +18,19 @@
    <body>
       <main class="page__wrapper">
          <div class="summary__wrapper">
+            <!-- Current balance  -->
             <div class="summary__balance">
                <div>
                   <p class="balance__label">Current balance</p>
                   <p class="balance__date">
                      As of
-                     <span class="date" id="date__balance">05/03/2037</span>
+                     <span class="date" id="date__balance"></span>
                   </p>
                </div>
-               <p class="balance__value" id="amount__balance">0000€</p>
+               <p class="balance__value" id="amount__balance"></p>
             </div>
 
-            <!-- ELEMENTS  -->
+            <!-- Budget Cards  -->
             <div class="summary__cards--wrapper">
                <h1 class="summary__cards--header">Budgets</h1>
                <div class="summary__cards">
@@ -38,9 +39,7 @@
                         <span class="fa-solid fa-car card__icon"></span>
                         Transportation
                      </h3>
-                     <span class="card__value" id="transportation"
-                        >$ 3,500</span
-                     >
+                     <span class="card__value" id="transportation"></span>
                   </div>
 
                   <div class="card">
@@ -48,7 +47,7 @@
                         <span class="fa-solid fa-house card__icon"></span>
                         Housing
                      </h3>
-                     <span class="card__value" id="housing">$ 3,500</span>
+                     <span class="card__value" id="housing"></span>
                   </div>
                   <div class="card">
                      <h3 class="card__name">
@@ -56,7 +55,7 @@
                            class="fa-solid fa-cart-shopping card__icon"></span>
                         Groceries
                      </h3>
-                     <span class="card__value" id="groceries">$ 3,500</span>
+                     <span class="card__value" id="groceries"></span>
                   </div>
                   <div class="card">
                      <h3 class="card__name">
@@ -64,16 +63,14 @@
                            class="fa-solid fa-martini-glass-citrus card__icon"></i>
                         Entertainment
                      </h3>
-                     <span class="card__value" id="entertainment">$ 3,500</span>
+                     <span class="card__value" id="entertainment"></span>
                   </div>
                </div>
             </div>
          </div>
 
-         <!-- MOVEMENTS-->
-
+         <!-- Inputs-->
          <div class="movements__wrapper">
-            <!-- Inputs Area  -->
             <form class="inputs__container" id="input__form">
                <div class="inputs__container--input">
                   <input
@@ -88,124 +85,60 @@
                      class="form__input" />
                </div>
 
-               <!-- <div class="inputs__container--type">
-                  <ul class="select__type">
-                     <li>
-                        <input
-                           value="transportation"
-                           type="radio"
-                           id="transportation"
-                           name="category" />
-                        <label for="transportation">Transportation</label>
-                     </li>
-                     <li>
-                        <input
-                           value="housing"
-                           type="radio"
-                           id="housing"
-                           name="category" />
-                        <label for="housing">Housing</label>
-                     </li>
-                     <li>
-                        <input
-                           value="groceries"
-                           type="radio"
-                           id="groceries"
-                           name="category" />
-                        <label for="groceries">Groceries</label>
-                     </li>
-                     <li>
-                        <input
-                           value="entertainment"
-                           type="radio"
-                           id="entertainment"
-                           name="category" />
-                        <label for="entertainment">Entertainment</label>
-                     </li>
-                  </ul>
-               </div> -->
-
                <div class="inputs__container--type">
-                  <input
-                     value="transportation"
-                     type="radio"
-                     id="transportation"
-                     name="category" />
-                  <label for="transportation">Transportation</label>
+                  <label class="type__label">
+                     <input
+                        value="transportation"
+                        type="radio"
+                        name="category" />
+                     <i class="type__label--name">Transportation</i>
+                  </label>
 
-                  <input
+                  <label class="type__label">
+                     <input value="housing" type="radio" name="category" />
+                     <i class="type__label--name">Housing</i>
+                  </label>
+
+                  <label class="type__label">
+                     <input value="groceries" type="radio" name="category" />
+                     <i class="type__label--name">Groceries</i>
+                  </label>
+
+                  <label class="type__label">
+                     <input
+                        value="entertainment"
+                        type="radio"
+                        name="category" />
+                     <i class="type__label--name">Entertainment</i>
+                  </label>
+
+                  <!-- <input
                      value="housing"
                      type="radio"
                      id="housing"
                      name="category" />
-                  <label for="housing">Housing</label>
-
-                  <input
-                     value="groceries"
-                     type="radio"
-                     id="groceries"
-                     name="category" />
-                  <label for="groceries">Groceries</label>
-
-                  <input
-                     value="entertainment"
-                     type="radio"
-                     id="entertainment"
-                     name="category" />
-                  <label for="entertainment">Entertainment</label>
+                  <label for="housing">Housing</label> -->
                </div>
 
-               <div class="inputs__container--btn">
-                  <button id="add__income" class="form__btn col-50">
-                     Add Income
-                  </button>
-                  <button id="add__expense" class="form__btn col-50">
+               <div>
+                  <button id="add__income" class="form__btn">Add Income</button>
+                  <button id="add__expense" class="form__btn">
                      Add Expense
                   </button>
                </div>
             </form>
 
+            <!-- Last Transactions-->
             <h1 class="movements__header">Last Transactions</h1>
-            <div class="movements__container" id="items__container">
-               <!-- 
-               <div class="movements__row">
-                  <span class="fa-solid fa-house card__icon"></span>
-                  <span class="movements__row--description">
-                     <label class="movements__row__description--name"
-                        >Coffe</label
-                     >
-                     <div class="movements__row__description--type">
-                        Entertainment
-                     </div>
-                  </span>
-                  <div class="movements__date">21 May 2024</div>
-                  <div class="movements__value">6</div>
-                  <p class="symbol">€</p>
-               </div>
-
-               <div class="movements__row">
-                  <span class="fa-solid fa-house card__icon"></span>
-                  <span class="movements__row--description">
-                     <label class="movements__row__description--name"
-                        >Dinner</label
-                     >
-                     <div class="movements__row__description--type">
-                        Entertainment
-                     </div>
-                  </span>
-                  <div class="movements__date">06 May 2024</div>
-                  <div class="movements__value">80</div>
-                  <p class="symbol">€</p>
-               </div> -->
-            </div>
+            <div class="movements__container" id="items__container"></div>
 
             <div class="movements__summary">
                <p class="summary__label">In</p>
                <p class="summary__value summary__value--in" id="amount__in"></p>
                <p class="summary__label">Out</p>
-               <p class="summary__value summary__value--out" id="amount__out">
-                  5000€
-               </p>
+               <p
+                  class="summary__value summary__value--out"
+                  id="amount__out"></p>
                <button class="btn--sort" id="sort__btn">
                   &downarrow; SORT
                </button>
