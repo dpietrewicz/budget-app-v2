@@ -43,8 +43,8 @@ body {
 /* SUMMARY ------------------------------------------------------ */
 
 .summary__wrapper {
-   margin-inline: auto;
-   padding: 5rem 0;
+   /* margin-inline: auto; */
+   padding: 8rem 0;
    display: flex;
    flex-wrap: wrap;
    flex-direction: column;
@@ -135,12 +135,14 @@ body {
    font-size: 1.3rem;
 }
 
-.card__icon {
+.card__icon::before {
    width: 3rem;
    height: 3rem;
    border-radius: 0.8rem;
+   font-size: 1.3rem;
    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-   display: inline-flex;
+   text-align: center;
+   display: flex;
    align-items: center;
    justify-content: center;
 }
@@ -148,36 +150,45 @@ body {
 .fa-arrow-up {
    font-size: 1.3rem;
    color: var(--color-blue-dark);
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 .fa-arrow-down {
    font-size: 1.3rem;
    color: var(--color-gray-dark);
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 /* MOVEMENTS ------------------------------------------------------ */
 .movements__wrapper {
-   padding: 5rem 0;
+   padding: 5rem 5rem;
    background-color: var(--color-gray-light);
-   min-width: 40rem;
+
    display: flex;
+   flex-wrap: wrap;
    flex-direction: column;
-   justify-content: space-between;
-   width: auto;
+   justify-content: center;
 }
 
 .movements__summary {
    display: flex;
-   align-items: baseline;
-   padding: 0 0.3rem;
+   justify-content: center;
+   align-items: center;
+   gap: 2rem;
+
    margin: 0 1.2rem;
+   padding: 2rem 0;
+
+   border-top: 1px solid var(--color-gray);
 }
 
 .summary__label {
    font-size: 1.2rem;
    font-weight: 500;
    text-transform: uppercase;
-   /* margin-right: 0.8rem; */
-   margin: auto;
 }
 
 .summary__value {
@@ -186,7 +197,7 @@ body {
 }
 
 .btn--sort {
-   margin-left: auto;
+   /* margin-left: auto; */
    border: none;
    background: none;
    font-size: 1.3rem;
@@ -313,17 +324,24 @@ input[type='radio']:checked::before {
 /* Last Transactions Section */
 
 .movements__header {
-   margin: 4rem 0 1.5rem 1.2rem;
+   margin: 0 1.2rem;
+   padding: 2rem 0;
    font-size: 1.6rem;
    font-weight: 600;
 }
 
 .movements__container {
-   padding-bottom: 1.5rem;
-   height: 40rem;
    margin: 0 1.2rem;
-   border-bottom: 1px solid var(--color-gray);
+   margin-bottom: 3rem;
+   height: 40rem;
+
    overflow-y: scroll;
+   overflow-x: hidden;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
 }
 
 .movements__container::-webkit-scrollbar {
@@ -443,6 +461,7 @@ input[type='radio']:checked::before {
 
    .movements__wrapper {
       border-radius: 0 0 0 30px;
+      padding: 0;
    }
 }
 
@@ -469,6 +488,17 @@ input[type='radio']:checked::before {
    .movements__wrapper {
       border-radius: 0 0 0 30px;
    }
+
+   .movements__container {
+      margin: auto;
+      margin-bottom: 4rem;
+   }
+
+   .movements__header,
+   .movements__summary {
+      display: flex;
+      justify-content: center;
+   }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -490,6 +520,17 @@ input[type='radio']:checked::before {
    .movements__wrapper {
       border-radius: 0 0 0 30px;
    }
+
+   .movements__container {
+      margin: auto;
+      margin-bottom: 4rem;
+   }
+
+   .movements__header,
+   .movements__summary {
+      display: flex;
+      justify-content: center;
+   }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -500,5 +541,16 @@ input[type='radio']:checked::before {
 
    .movements__wrapper {
       border-radius: 0 0 0 30px;
+   }
+
+   .movements__container {
+      margin: auto;
+      margin-bottom: 4rem;
+   }
+
+   .movements__header,
+   .movements__summary {
+      display: flex;
+      justify-content: center;
    }
 }
