@@ -15,16 +15,16 @@ const dateBalance = document.querySelector('#date__balance');
 let data = [
    {
       id: 1900874625,
-      description: 'selling',
+      description: 'dinner',
       amount: '300',
-      category: 'Groceries',
+      category: 'Entertainment',
       date: '11/07/2024',
-      type: 'income',
+      type: 'expense',
    },
    {
       id: 1901087367,
       description: 'salary',
-      amount: '1000',
+      amount: '5000',
       category: 'Housing',
       date: '21/07/2024',
       type: 'income',
@@ -32,7 +32,7 @@ let data = [
    {
       id: 1901121733,
       description: 'rent',
-      amount: '800',
+      amount: '1000',
       category: 'Housing',
       date: '21/07/2024',
       type: 'expense',
